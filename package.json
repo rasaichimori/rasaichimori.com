@@ -1,0 +1,19 @@
+{
+  "name": "rasaichimori.com",
+  "version": "1.0.0",
+  "description": "for my portfolio website!",
+  "main": "home.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "portfolio",
+    "rasa"
+  ],
+  "author": "rasa",
+  "license": "ISC",
+  "dependencies": {
+    "@swup/head-plugin": "^1.2.0",
+    "swup": "^2.0.15"
+  }
+}
