@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    <title>rasa ichimori</title>
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="styles.css" id="main-style">
+    <link rel="stylesheet" href="portfolio.css">
+    <meta name="description" content="Rasa. I am me." />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+		<script defer src="node_modules/swup/dist/swup.min.js"></script> 
+		<script defer src="node_modules/@swup/head-plugin/dist/SwupHeadPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/preload-plugin/dist/SwupPreloadPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/progress-plugin/dist/SwupProgressPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/debug-plugin/dist/SwupDebugPlugin.min.js"></script>
+		<script defer src="setup.js"></script> 
+  </head>
+<!--peeking under the hood huh? carry on...-->
+    
+  <body>
+		<div class = "loader" id="loader">
+			<div class ="loader-circle" id="loader-circle"></div>
+			<img src="loader.gif">
+			<p>loading...</p>
+		</div>
+		<nav>
+			<div class = "menu" id="menu">
+				<div class = "menuDiv" id="menuDiv">
+					<a href="/index.html"><li>home</li></a>
+					<a href="/aboutme.html"><li>about me</li></a>
+					<a href="/portfolio.html"><li>portfolio</li></a>
+					<a href="/contact.html"><li>contact</li></a>
+				</div>
+			</div>
+		</nav>
+		<main id="swup" class="transition-circle">
+			<div class = "pageLength" id="pageLength"></div>
+			<div class = "pageContent" id="pageContent">
+			<div class = "p5canvas" id= "p5canvas"></div>
+			
+			<div class = "bg-circles" id = "bg-circles">
+				<div class = "bg-circle"></div>
+			</div>
+<!--			<div class = "koi" id= "koi"></div>-->
+				<div class = "blobs" id="blobs">
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob6">
+						<path fill="#95BAC3" d="M27.3,-52.7C36.8,-41.9,46.8,-37.3,52.8,-29.6C58.7,-21.9,60.6,-10.9,58.5,-1.2C56.4,8.5,50.3,17,43.3,23C36.3,28.9,28.5,32.3,21.1,39C13.7,45.8,6.9,55.8,-1.6,58.6C-10.1,61.4,-20.2,57,-29.9,51.6C-39.6,46.2,-48.8,39.9,-57.4,31.1C-65.9,22.3,-73.7,11.2,-76.2,-1.4C-78.6,-14,-75.6,-28,-68.8,-39.7C-61.9,-51.4,-51.2,-60.8,-39.1,-70.1C-27,-79.4,-13.5,-88.5,-2.3,-84.6C8.9,-80.6,17.9,-63.5,27.3,-52.7Z" transform="translate(100 100)" />
+					</svg>
+				</div>
+
+				<div class= "pages" id="home-page">
+					<div class = "title">
+								<h1>RASA ICHIMORI</h1>
+								<h4>creative developer</h4>
+
+					</div>
+
+					<div class = "scrollanimation" onclick="window.scrollTo(0,window.innerHeight)">
+						<div class = "mouse">
+							<div class = "scrollwheel">
+							</div>
+						</div>
+						↓	
+					</div>
+				</div>
+
+
+
+
+				<div class = "pages" id="aboutme-page">
+					<h2 class = "titles" id="aboutme-title">A  Little Bit About Myself.</h2>
+
+					<div id= "aboutme-p">
+						<p>I'm a creator. Let's just get that out of the way. I just love the feeling of creating something out of nothing♥
+						<br>
+						Whether it be <a href="/art.html" id="art-link" class="linker">art</a>, <a href="/music.html" id="music-link" class="linker">music</a>, or <a href="/projects.html" id="projects-link" class="linker">web projects</a>... I just love it all 🙏.
+
+						<br><br>
+						I am a self taught developer and designer with a passion for interactivity and responsiveness combined with pleasing aesthetics.</p>
+
+						<br><br>
+						<br><br>
+						<p style = "opacity: 0.5" id="keepScrolling">keep scrolling to see my skills...</p>
+					</div>
+					<div id="fish-button" onclick="changeImg();">
+						<svg viewBox="0 0 100 100" width="100" height="100" id="circle-text">
+							<defs>
+								<path id="circle-path"
+									d="
+										M 50, 50
+										m -37, 0
+										a 37,37 0 1,1 74,0
+										a 37,37 0 1,1 -74,0"/>
+							</defs>
+							<text font-size="10">
+								<textPath xlink:href="#circle-path" id="circleText">
+									Don't like the fish?&nbsp &nbsp Click here to kill them all!
+								</textPath>
+							</text>
+						</svg>
+						<img id="aboutme-img" src="images/portfolio/gross.webp">
+						<div id="fish-button-bg">you sure they need to die?🥺</div>
+						<div id="fish-button-bg2"></div>
+					</div>
+
+					<div id="fish-button-mobile">
+						<svg viewBox="0 0 100 100" width="100" height="100" id="circle-text-mobile">
+							<defs>
+								<path id="circle-mobile"
+									d="
+										M 50, 50
+										m -37, 0
+										a 37,37 0 1,1 74,0
+										a 37,37 0 1,1 -74,0"/>
+							</defs>
+							<text font-size="8">
+								<textPath xlink:href="#circle-mobile">
+									Try viewing on a non-moblie device!&nbsp &nbsp I think it'll be better!
+								</textPath>
+							</text>
+						</svg>
+						<img id="aboutme-img-mobile" src="images/portfolio/dead.png">
+					</div>
+				</div>	
+
+				<div id ="goop-div">
+					<h2 class = "titles" id="skills-title">Skills</h2>
+					<div id = "goop"></div>
+				</div>
+				<div class = "pages" id="tech-page">
+
+	<!--					<h2 class = "hidden-title">I love programming</h2>-->
+						<h2 class = "titles" id="tech-title">What I Use</h2>
+
+						<div class = "tech-p">
+							<br>
+							<p>There are several frameworks and libraries that I like using for my web projects.</p>
+							<br>
+							<p>Here are a few technologies that I have been using recently:</p>
+
+							<div class = "skill-list">
+								<h4>Programming Languages</h4>
+								<ul>
+									<li>HTML</li>
+									<li>CSS/Sass</li>
+									<li>Javascript</li>
+									<li>Python</li>
+									<li>PHP</li>
+									<li>Rust</li>
+								</ul>
+								<h4>Libraries & Frameworks</h4>
+								<ul>
+									<li>WebGL</li>
+									<li>jQuery</li>
+									<li>React</li>
+									<li>Node.js</li>
+									<li>three.js</li>
+									<li>Pixi.js</li>
+									<li>p5.js</li>
+								</ul>
+							</div>
+						</div>	
+
+				</div>
+				<div class = "pages" id="hidden-page">
+					<h2 class = "titles" id="hidden-title">programmer swag</h2>
+
+					<div class = "hidden-p">
+						<p style = "opacity: 0.5" id="keepScrolling">scroll to see some of my projects...</p>
+					</div>
+				</div>	
+				<div class = "pages" id="nomuyo-page">
+					<h2 class = "titles" id="nomuyo-title">nomuyo</h2>
+
+					<div class = "ps" id = "nomuyo-p">
+						<p>My personal yogurt drink business!
+						<br>
+						<br>I created nomuyo.com and it was a completely solo operation.
+						<br>This was a full stack project that included payments with ecwid, forms, and other server-side programming in addition to front-end development and design.
+						</p>
+						<br><br>
+						<p><a href="https://nomuyo.com/" target="_blank" id = "nomuyo-check" class="linker">visit the site!</a></p>
+					</div>
+					<div class = "imgDiv" id= "nomuyo-img-div">
+						<img id = "nomuyo-img" src="images/portfolio/nomuyo-menu.png">
+						<img id = "nomuyo-img2" src="images/portfolio/nomuyo-home.png">
+					</div>
+
+
+				</div>
+
+				<div class = "pages" id="koipond-page">
+					<h2 class = "titles" id="koipond-title">koipond</h2>
+
+					<div class = "ps" id = "koipond-p">
+						<p>Relaxation website
+						<br>
+						<br>A pure Javascript multiplayer website featuring music by me!
+						<br>move with your mouse and interact with other fish.
+						<br>Utilizes Web Audio API and other Javascript libraries.
+						</p>
+						<br><br>
+						<p><a href="https://koipond.ink/"  target="_blank" id = "koi-check" class="linker">check it out here!</a></p>
+					</div>
+					<div class = "imgDiv" id= "koipond-img-div">
+						<img id = "koipond-img" src="images/portfolio/koipond.png">
+					</div>
+				</div>		
+
+				<div class = "pages" id="music-page">
+					<h2 class = "titles" id="music-title">Music Visualizer</h2>
+
+					<div class = "ps" id = "music-p">
+						<p>customizable music visual project
+						<br>
+						<br>Created a  Monstercat-esque music visulaizer that is fully customizable.
+						<br>Users can even upload their own songs and background images
+						</p>
+						<br><br>
+						<p><a href="/projects/musicVisual.html" target="_blank" id = "music-check" class="linker">check it out here!</a></p>
+					</div>
+					<div class = "imgDiv" id= "music-img-div">
+						<img id = "music-img" src="images/portfolio/music-black.png">
+						<img id = "music-img2" src="images/portfolio/music-sky.png">
+					</div>
+				</div>		
+
+				<div class = "pages" id="more-page">
+					<h2 class = "titles" id="more-title">More Projects</h2>
+					<div id = "more-p">
+						<p>Find a list of all my projects <a href="/projects.html" id="all-projects-here" class="linker">here</a>!
+						<br>
+					</div>
+					<div id = "resume">
+						<h3 id = "resume-title">looking for my resume?</h3>
+						<a href = "resume.pdf" target="_blank"><button id="resume-button">here it is!</button></a>
+					</div>
+				</div>	
+
+				<div class = "pages" id="contact-page">
+					<div id="padding-contact"></div>
+					<div id="contact-title" class = "titles"><a href="/contact.html"><h2>Contact Me</h2></a>
+						<div id="contact-bg"></div>
+					</div>
+					<div class = "contact-p">
+						<p>lets get in touch!</p>
+						<p>rasaichimori@gmail.com<p>
+					</div>
+					<div class = "socials">
+						<a href="https://www.behance.net/rasaichimori" target="_blank"><div><img class = "socials-img" src="socials-icon/behance.png"></div></a>
+						<a href="https://dribbble.com/ichimori" target="_blank"><div><img class = "socials-img" src="socials-icon/dribble.png"></div></a>
+						<a href="https://www.facebook.com/spongebob" target="_blank"><div><img class = "socials-img" src="socials-icon/facebook.png"></div></a>
+						<a href="https://www.instagram.com/this.is.rai/" target="_blank"><div><img class = "socials-img" src="socials-icon/instagram.png"></div></a>
+						<a href="https://www.linkedin.com/in/rasa-ichimori-0b3b3523a/" target="_blank"><div><img class = "socials-img" src="socials-icon/linkedin.png"></div></a>
+						<a href="https://github.com/rasaichimori" target="_blank"><div><img class = "socials-img" src="socials-icon/github.png"></div></a>
+						<a href="https://www.youtube.com/c/raitunes" target="_blank"><div><img class = "socials-img" src="socials-icon/youtube.png"></div></a>
+					</div>
+
+					<a id="back-button" href="/index.html" class="linker">back to home</a>
+				</div>	
+
+
+			</div>
+			<footer class="site-footer">
+						<li>&copy;2022<a href="/index.html" class="linker"> rasaichimori</a>
+						</li><!-- .footer-copyright -->
+			</footer><!-- #site-footer -->
+		</main>
+  </body>
+</html>

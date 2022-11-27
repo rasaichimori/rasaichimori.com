@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sampler</title>
+    <link rel="icon" href="images/musicVisualLogo.png">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="sampler.css">
+<!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script> 
+-->
+		
+		<script src="https://unpkg.com/wavesurfer.js"></script>
+  </head>
+    
+  <body>
+      <div class = "loader">
+<!--				loading-->
+			</div>
+      <div id="container">
+					<div id="p5canv" class="p5canv"></div>
+          <h1 id="header" class="title">sampler</h1>
+					<audio id ="audio" src=""></audio>
+					<div class="slider-cont" id="slider-cont">
+						<div class ="slider-box">
+							<p>edge smoothing:</p>
+							<p id="value0" class="values">0</p>
+							<input class="slider" id="slider0" type="range" min="1" max="50" value= "5" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>speed smoothing:</p>
+							<p id="value1" class="values">0</p>
+							<input class="slider" id="slider1" type="range" min="1" max="20" value= "2" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>number of bars:</p>
+							<p id="value2" class="values">0</p>
+							<input class="slider" id="slider2" type="range" min="10" max="300" value= "150" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>bar thickness:</p>
+							<p id="value3" class="values">0</p>
+							<input class="slider" id="slider3" type="range" min="1" max="10" value= "5" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>width:</p>
+							<p id="value4" class="values">0</p>
+							<input class="slider" id="slider4" type="range" min="200" max="1000" value= "1000" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>height:</p>
+							<p id="value5" class="values">0</p>
+							<input class="slider" id="slider5" type="range" min="20" max="300" value= "150" step="1">
+						</div>
+					</div>
+					<button class="play-button" id="play-button">
+					</button>
+					<div class="controller">
+						<div class="sampleTimeline">
+							<canvas id="timelineDisplay"></canvas>
+						</div>
+						<div class="sampleVisual">
+							<canvas id="display"></canvas>
+							<div id="waveform"></div>
+						</div>
+						<div class="song-name" id="song-name">sample1.mp3</div>
+						
+					</div>
+					<div class ="settings" id="settings">
+						hover for settings
+					</div>
+				
+				
+					<label class= "upload-button">
+						<input id="uploader" type="file" accept="audio/*">upload sample
+					</label>
+				
+					<div class = "drop-zone" id="drop-zone" ondragleave="dragEnd()">Drop Sample Here</div>
+				
+<!--				for the lightbox and the uploading drop zones-->
+				<script>
+					const dzElement = document.getElementById("drop-zone");
+					window.addEventListener("dragenter",e =>{
+						e.preventDefault();
+						dzElement.style.pointerEvents = "auto";
+						dzElement.style.opacity = "0.8";
+					});
+					window.addEventListener("dragover",e =>{
+						e.preventDefault();
+					});
+					function dragEnd(){
+						dzElement.style.pointerEvents = "none";
+						dzElement.style.opacity = "0";
+					};
+					const inputElement = document.getElementById("uploader");
+					const songNameElement = document.getElementById("song-name");
+					inputElement.addEventListener("change", (e) => {
+						if (inputElement.files.length>0) {
+							newAudio(inputElement.files[0]);
+						}
+					});
+					
+					window.addEventListener("drop", e =>{
+						e.preventDefault();
+						if(e.dataTransfer.files.length>0){
+							inputElement.files = e.dataTransfer.files;
+							dzElement.style.pointerEvents = "none";
+							dzElement.style.opacity = "0";
+							newAudio(inputElement.files[0]);
+						}
+					});
+					
+				</script>
+				
+				
+    	<script src="sampler.js"></script>
+				
+
+			<footer class="site-footer">
+						<li>&copy;2022<a href="https://rasaichimori.com"> rasaichimori</a>
+						</li><!-- .footer-copyright -->
+			</footer><!-- #site-footer -->
+      </div>
+    </body>
+</html>

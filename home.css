@@ -1,0 +1,478 @@
+
+body{
+	font-family: lineto, serif;
+	line-height: 1.8;
+}
+
+.pageLength{
+	position: absolute;
+	width: 100vw;
+	height: 700vh;
+	z-index: -1;
+	overflow-y: hidden;
+}
+.pageContent{
+	top: 0;
+	left: 0;
+	position: fixed;
+}
+
+
+
+#blob1{
+	width: 100%;
+	left: 20vw;
+	top: 100vh;
+}
+#blob2{
+	width: 100%;
+	left: 95vw;
+	top: 10vh;
+}
+#blob3{
+	width: 80%;
+	left: 180vw;
+	top: 250vh;
+}
+
+#blob4{
+	width: 100%;
+	position: absolute;
+	left: 65vw;
+	top: 450vh;
+/*	opacity: 0.1;*/
+	z-index: -14;
+	transform: translate(-50%,-50%);
+}
+#block{
+	position: absolute;
+	left: 65vw;
+	top: 450vh;
+/*	background-color: #fff;*/
+	background-color: #f7f4f0;
+	width: 5vw;
+	height: 5vw;
+	transform: translate(-20vw,27.1vw) rotate(45deg);
+	z-index: -3;
+}
+#blob5{
+	width: 30%;
+	left: 160vw;
+	top: 150vh;
+}
+#blob6{
+	width: 100%;
+	left: 100vw;
+	top: 200vh;
+}
+#blob7{
+	width: 100%;
+	left: 150vw;
+	top: 400vh;
+}
+#blob8{
+	width: 50%;
+	left: 80vw;
+	top: 300vh;
+	transform: translate(-50%,-50%) rotate(-90deg);
+}
+
+#blob9{
+	width: 150%;
+	left: 170vw;
+	top: 720vh;
+	transform: translate(-50%,-50%) rotate(10deg);
+	opacity: 1;
+}
+
+#blob10{
+	width: 50%;
+	left: 120vw;
+	top: 550vh;
+	transform: translate(-50%,-50%) rotate(10deg);
+}
+#blob11{
+	width: 100%;
+	left: 50vw;
+	top: 650vh;
+	transform: translate(-50%,-50%) rotate(-90deg);
+}
+#blob12{
+	width: 70%;
+	left: 180vw;
+	top: 530vh;
+	transform: translate(-50%,-50%) rotate(-90deg);
+}
+
+
+
+
+
+
+
+/*front page*/
+#home-page{
+	position: absolute;
+	top: 50vh;
+	left: 50vw;
+	pointer-events: auto;
+}
+.title{
+	position: absolute;
+	width: 100%;
+	top: 40%;
+	text-align: center;
+	font-family: cardo, serif;
+	letter-spacing: 10px;
+	font-size: 10px;
+}
+
+.main-menu{
+	position: relative;
+	top: 50%;
+	list-style-type: none;
+	text-align: center;
+	font-size: 15px;
+	z-index: 10;
+	font-family: cardo;
+	line-height: 1.35;
+}
+
+.main-menu a{
+	color: black;
+	text-decoration: none;
+}
+.main-menu a:hover{
+  text-decoration: underline;
+}
+
+
+
+
+#boat-page{
+	top: 150vh;
+	left: 100vw;
+}
+#boat{
+	position: absolute;
+	top: 30%;
+	left: 30%;
+	transform: rotate(-40deg) scale(0.5);
+}
+.fishlove{
+	position: absolute;
+	left: 60%;
+	top: 45%;
+	transform: rotate(40deg);
+}
+
+
+#welcome-page{
+	left: 150vw;
+	top: 250vh;
+}
+#welcome-title{
+	position: absolute;
+	width: 150px;
+	top: 125px;
+	right: 50%;
+	transform: rotate(0deg);
+}
+.bounce{
+	transform: rotate(-30deg)  translateX(0px);
+	animation: bounce 0.8s linear;
+	animation-iteration-count: 1;	
+}
+
+.welcome-p{
+/*	font-family: lineto;*/
+	position: absolute;
+	top: 40%;
+	right: 150px;
+	width: 35%;
+	letter-spacing: 2px;
+}
+
+
+
+
+#aboutme-page{
+	top: 450vh;
+	left: 50vw;
+}
+#aboutme-title{
+	position: absolute;
+	width: 150px;
+	top: 125px;
+	left: 10%;
+	transform: rotate(0deg);
+}
+
+.aboutme-p{
+/*	font-family: lineto;*/
+	position: absolute;
+	top: 40%;
+	left: 10%;
+	width: 35vw;
+	letter-spacing: 2px;
+}
+
+#skip{
+	padding-left: 7px;
+	position: absolute;
+	color: black;
+	z-index: 10;
+}
+
+#skip:hover ~ #speechBubble{
+/*#skip:hover{*/
+/*#speechBubble:hover{*/
+	width: 210px;
+	opacity: 1;
+}
+
+#speechBubble{
+	padding-left: 67px;
+	position: absolute;
+	opacity: 0;
+	background-color: white;
+	border-radius: 20px;
+	width: 80px;
+	overflow: hidden;
+	white-space: nowrap;
+	font-family: lineto;
+	transition: all 0.5s cubic-bezier(.47,1.64,.41,.8);
+	z-index: 0;
+}
+
+
+
+#instructions-page{
+	left: 100vw;
+	top: 550vh;
+}
+#instructions-title{
+	position: absolute;
+	top: 17%;
+	left: 50%;
+	transform: translate(-50%,0) rotate(0deg);
+}
+.instructions-p{
+/*	font-family: lineto;*/
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%,0) rotate(2deg);
+	width: 35vw;
+	letter-spacing: 2px;
+	text-align: center;
+}
+
+#contact-page{
+	left: 150vw;
+	top: 650vh;
+}
+#contact-title a{
+	position: relative;
+	text-align: center;
+	color: black;
+	text-decoration: none;
+}
+#contact-title:hover{
+	cursor: pointer;
+}
+#contact-title:hover > #contact-bg{
+	width: 110%;
+}
+#contact-bg{
+	position: absolute;
+	width: 0%;
+	height: 40%;
+	top: 50%;
+	left: 50%;
+	background-color: indianred;
+	transform: translate(-50%,-50%) rotate(3deg);
+	z-index: -3;
+	transition: all 0.5s cubic-bezier(.47,1.64,.41,.8);
+}
+#contact-title h2{
+	position: relative;
+	width: 100%;
+}
+#contact-title{
+	position: relative;
+	top: 17%;
+	left: 50%;
+	width: 200px;
+	transform: translate(-50%,0) rotate(0deg);
+}
+.contact-p{
+/*	font-family: lineto;*/
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%,0);
+	width: 35vw;
+	letter-spacing: 2px;
+	text-align: center;
+}
+
+
+@media screen and (max-width : 600px),
+			 screen and (max-height : 600px),{
+	.blobs{
+		position: fixed;
+		top: 0px;
+	}
+	#blob1{
+		width: 100%;
+		left: 20vw;
+		top: 100vh;
+	}
+	#blob2{
+		width: 100%;
+		left: 95vw;
+		top: 10vh;
+	}
+	#blob3{
+		display: none;
+	}
+
+	#blob4{
+		display: none;
+	}
+	#block{
+		display: none;
+	}
+	#blob5{
+		display: none;
+	}
+	#blob6{
+		display: none;
+	}
+	#blob7{
+		display: none;
+	}
+	#blob8{
+		display: none;
+	}
+
+	#blob9{
+		width: 150%;
+		left: 70vw;
+		top: 250vh;
+		transform: translate(-50%,-50%) rotate(10deg);
+		opacity: 1;
+/*		display: none;*/
+		
+	}
+
+	#blob10{
+		display: none;
+	}
+	#blob11{
+		display: none;
+	}
+	#blob12{
+		display: none;
+	}
+	.pageContent{
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.pageLength{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 400vh;
+	}
+	#home-page{
+		position: absolute;
+		left: 50vw;
+		top: 50vh;
+		pointer-events: auto;
+	}
+	#boat-page{
+		display: none;
+		left: 50vw;
+		top: 150vh;
+	}
+	#welcome-page{
+		left: 50vw;
+		top: 150vh;
+	}
+	
+	#welcome-title{
+		position: absolute;
+		width: 100%;
+		top: 125px;
+		left: 0;
+		text-align: center;
+	}
+	.welcome-p{
+	/*	font-family: lineto;*/
+		position: absolute;
+		top: 40%;
+		left: 10%;
+		width: 80%;
+		text-align: left;
+		
+		letter-spacing: 2px;
+	}
+
+	#aboutme-page{
+		left: 50vw;
+		top: 250vh;
+	}
+
+	.aboutme-p{
+	/*	font-family: lineto;*/
+		position: absolute;
+		top: 40%;
+		left: 10%;
+		width: 80vw;
+		letter-spacing: 2px;
+	}
+
+	#skip{
+		padding-left: 7px;
+		position: absolute;
+		color: black;
+		z-index: 10;
+	}
+	#instructions-page{
+		display: none;
+		left: 50vw;
+		top: 550vh;
+	}
+	#contact-page{
+		left: 50vw;
+		top: 350vh;
+	}
+	.contact-p{
+	/*	font-family: lineto;*/
+/*		position: absolute;*/
+		top: 40%;
+/*		left: 50%;*/
+/*		transform: translate(-50%,0);*/
+		width: 70vw;
+		letter-spacing: 2px;
+		text-align: center;
+	}
+	#end{
+		position: absolute;
+		width: 100%;
+		text-align: center;
+		bottom: 10%;
+	}
+	
+	
+	canvas{
+		filter: none;
+		-webkit-filter: none;
+	}
+}
+
+

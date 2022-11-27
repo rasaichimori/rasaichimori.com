@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>particles!</title>
+    <link rel="icon" href="images/musicVisualLogo.png">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="particleStyles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  </head>
+    
+  <body style="color: #444">
+<!--
+      <div class = "loader">
+					<p>loading</p>
+			</div>
+-->
+      <div id="container">
+					<div class ="background" id = "bg"></div>
+          <p id="header" class="title">particle</p>
+					<div class="cont" id ="cont">
+						<div class="p5canv" id="p5canv"></div>
+						<p id ="frameRateDisplay">pp</p>
+					</div>
+					<div class="slider-cont" id="slider-cont">
+						<div class ="slider-box">
+							<p>particle size:</p>
+							<p id="value0" class="values">0</p>
+							<input class="slider" id="slider0" type="range" min="1" max="20" value= "5" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>particle amount:</p>
+							<p id="value5" class="values">0</p>
+							<input class="slider" id="slider5" type="range" min="1" max="1000" value= "300" step="1">
+						</div>
+						<div class ="color-cont">
+							<p>particle color:</p>
+							<div class ="color-mode">
+								<div class = "color" id="color0" onclick="changeColors(this);" style="background-color: #eee"></div>
+								<div class = "color" id="color1" onclick="changeColors(this);" style="background-color: #444"></div>
+								<div class = "color" id="color2" onclick="changeColors(this);" style="background-color: #d6d2b5"></div>
+								<div class = "color" id="color3" onclick="changeColors(this);" style="background-color: #93ae88"></div>
+								<div class = "color" id="color4" onclick="changeColors(this);" style="background-color: #d48c8c"></div>
+								<div class = "color" id="color5" onclick="changeColors(this);" style="background-color: #a2b9c5"></div>
+								<div class = "color" id="color6" onclick="changeColors(this);" style="background-color: #ff0000"></div>
+							</div>
+						</div>
+						<div class = "switch-box">
+							<p>display connections: </p>
+							<label class="switch">
+								<input type="checkbox" id="displayConnections" checked>
+								<span class="sw round"></span>
+							</label>
+						</div>
+						<div class ="slider-box" id="connectionRangeBox">
+							<p>connection range:</p>
+							<p id="value1" class="values">0</p>
+							<input class="slider" id="slider1" type="range" min="10" max="50" value= "25" step="1">
+						</div>
+						<div class ="color-cont" id="connectionColor">
+							<p>connection color:</p>
+							<div class ="color-mode">
+								<div class = "color" id="color0" onclick="changeConColors(this);" style="background-color: rgb(255, 255, 255)"></div>
+								<div class = "color" id="color1" onclick="changeConColors(this);" style="background-color: rgb(20, 20, 20)"></div>
+								<div class = "color" id="color2" onclick="changeConColors(this);" style="background-color: rgb(255, 0, 255)"></div>
+								<div class = "color" id="color3" onclick="changeConColors(this);" style="background-color: rgb(147, 255, 136)"></div>
+								<div class = "color" id="color4" onclick="changeConColors(this);" style="background-color: rgb(255, 255, 207)"></div>
+								<div class = "color" id="color5" onclick="changeConColors(this);" style="background-color: rgb(0, 100, 255)"></div>
+								<div class = "color" id="color6" onclick="changeConColors(this);" style="background-color: rgb(255, 150, 0)"></div>
+							</div>
+						</div>
+						<div class ="slider-box">
+							<p>attraction:</p>
+							<p id="value2" class="values">0</p>
+							<input class="slider" id="slider2" type="range" min="0" max="30" value= "5" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>repulsion:</p>
+							<p id="value3" class="values">0</p>
+							<input class="slider" id="slider3" type="range" min="0" max="30" value= "5" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>range:</p>
+							<p id="value4" class="values">0</p>
+							<input class="slider" id="slider4" type="range" min="10" max="50" value= "20" step="1">
+						</div>
+						<div class ="bg-cont">
+							<p>background:</p>
+							<div class ="bg-mode">
+								<div class = "bg-thumb" id="bg-white" onclick="changeBg(this)" style ="background-color: #fff"></div>
+								<div class = "bg-thumb" id="bg-black" onclick="changeBg(this)" style ="background-color: #ddddd9"></div>
+								<div class = "bg-thumb" id="bg-sky" onclick="changeBg(this)" style ="background-color: #000"></div>
+								<div class = "bg-thumb" id="bg-gif" onclick="changeBg(this)" style ="background-color: #eeede9"></div>
+							</div>
+						</div>
+						<div class = "switch-box" id = "fullScreen-box">
+							<p>full screen: </p>
+							<label class="switch">
+								<input type="checkbox" id="fullScreen">
+								<span class="sw round"></span>
+							</label>
+						</div>
+						<div class = "switch-box" style="padding-bottom: 50px">
+							<p>display framerate: </p>
+							<label class="switch">
+								<input type="checkbox" id="displayFrameRate" checked>
+								<span class="sw round"></span>
+							</label>
+						</div>
+					</div>
+				
+<!--				to bring settings-->
+				<script>
+				var settingsBox = document.getElementById('slider-cont');
+				window.addEventListener('mousemove', (e) => {
+					if(e.clientX>window.innerWidth-450||window.innerWidth<800){
+						settingsBox.style.transform = "translate(0px,0px)";
+					}
+					else{
+//						if(!mouseIsPressed)
+						{
+							settingsBox.style.transform = "translate(400px,0px)";
+						}
+					}
+				});
+				
+				</script>
+
+			<footer class="site-footer">
+						<li>&copy;2022<a href="https://rasaichimori.com"> rasaichimori</a>
+						</li><!-- .footer-copyright -->
+			</footer><!-- #site-footer -->
+      </div>
+			<script src="particleFun.js"></script>
+    </body>
+</html>

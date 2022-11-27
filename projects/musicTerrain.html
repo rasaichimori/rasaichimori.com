@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music terrain</title>
+    <link rel="icon" href="images/musicTerrain.png">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+			body{
+				margin: 0;
+				overscroll-behavior-y: none;
+				font-family: helvetica;
+			}
+			.loader{
+				background-color: black;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 1;
+				z-index: 10;
+				transition: all 1s;
+			}
+			.loader-gif{
+				position: relative;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				height: 100px;
+			}
+			.loader p{
+				position: relative;
+				top:170px;
+				color: gray;
+				font-family: poppins;
+				text-align: center;
+			}
+			.lightbox{
+				position: fixed;
+				top:0px;
+				width: 100%;
+				height: 100%;
+				z-index: -1;
+			}
+			
+			.ext-links{
+				font-size: 10px;
+				width: 70px;
+				position: absolute;
+				top: 80px;
+				right: 230px;
+				color: white;
+			}
+			
+			.ext-links li{
+				margin: 8px 0px;
+			}
+			.ext-links a{
+				color: white;
+				text-decoration: none;
+			}
+			#m-links{
+				opacity: 1;
+			}
+			
+			#small{
+				opacity: 1;
+			}
+			.ext-links a:hover{
+				color: gray;
+			}
+			.title{
+				padding-top: 50px;
+				font-family: poppins;
+				color: gray;
+				letter-spacing: 10px;
+				text-align: center;
+			}
+			.audius{
+				position: absolute;
+				margin: 0px;
+				bottom: 12vh;
+				left: 450px;
+				color: gray;
+				font-size: 10px;
+				opacity: 1;
+			}
+			.audius a{
+				color: gray;
+				text-decoration: none;
+			}
+			.audius a:hover{
+				text-decoration: underline;
+			}
+			.site-footer li{
+				font-family: lineto;
+				color: white;
+			}
+			.site-footer li a{
+				color: white;
+			}
+    </style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+		<script>
+var theTrack = [];
+
+async function selectHost(){
+	const sample = (arr) => arr[Math.floor(Math.random() * arr.length)]
+	const res = await fetch('https://api.audius.co')
+	const hosts = await res.json()
+	return sample(hosts.data)
+}
+
+const userUrl = 'https://audius.co/officialrai';
+
+const fetchUserTracks = async ()=>{
+	const host = 'https://audius-discovery-1.altego.net';
+//	if(again = 'yes'){
+//	const host = await selectHost();
+//	}
+	console.log(host);
+	const Ures = await fetch(host+'/v1/resolve?url='+userUrl+'&app_name=rasa')
+	const Ujson = await Ures.json()
+	const userID = Ujson.data.id
+	
+	const Tres = await fetch(host+'/v1/users/'+userID+'/tracks?app_name=rasa')
+	const Tjson = await Tres.json()
+	const allTracks = Tjson.data
+	for(var i = 0; i<allTracks.length; i++){
+			const trackID = allTracks[i].id;
+			const trackUrl = host+'/v1/tracks/'+trackID+'/stream?app_name=rasa';
+			theTrack.push(trackUrl);
+	}
+	return allTracks;
+}
+
+var allInfo;
+
+function tryHostAgain(){
+	fetchUserTracks().then(allTracks=>{
+		for (var i =0; i<(theTrack.length); i++){
+				song[i] = loadSound(theTrack[i]);
+				rectY.push(0);
+				order.push(0);
+				bsize.push(0);
+				CurTimes.push(0);
+		}
+		allInfo = allTracks;
+	})
+//	.catch(tryHostAgain());
+}
+
+tryHostAgain();
+
+			
+var song = [];
+
+// for lightbox
+var lightbox, lightboxC;
+
+
+var rectY = [];
+var order = [];
+var bsize = [];
+var CurTimes = [];
+var fft;
+var detail = 128;
+// for music
+
+var canvas;
+var offwidth;
+
+function setup(){
+	fft = new p5.FFT(0.85,detail);
+	canvas = createCanvas(600,600);
+	canvas.parent("lightbox-c");
+	lightbox = select('.lightbox');
+	lightboxC = document.getElementById('lightbox-c');
+	changeSize();
+}
+
+var mouseClicked = false;
+var mCount = 0;
+var pmCount = 0;
+
+function mousePressed(){
+    mouseClicked = true;
+};
+
+function mouseReleased(){
+    if(mouseClicked == true){
+        mCount++;
+        mouseClicked = false;
+    }
+}
+
+function windowResized(){
+    changeSize();
+}
+
+function changeSize(){
+    offwidth = lightboxC.offsetWidth;
+    resizeCanvas(offwidth, windowHeight, true);
+}
+
+function getSum(total, num) {
+    return total + num;
+}
+
+function mod(n, m) {
+  return ((n % m) + m) % m;
+}
+
+var steep = 200;
+var opaq = 255;
+var start = false;
+var sY = 600;
+var Y = 0;
+
+function draw(){
+    Y+=(sY-Y)/10;
+    textSize(10);
+    textFont('sans-serif');
+    lightbox.style('cursor','default');
+    clear();
+    background(0,0,0);
+    checkLinks();
+    posRect(Y);
+    setOrder();
+    checkSongStatus();
+    drawSpectrum();
+    createRect();
+    checkMouse();
+    detailBar();
+    if(mCount!=pmCount){
+        pmCount = mCount;
+    }
+}
+
+function mouseWheel(event){
+	if(opaq>0){
+    sY += event.delta;
+	}
+};
+
+var x = 100;
+var SongPlaying = -1;
+var mouseBox = -1;
+
+function checkLinks(){
+		var links = document.getElementById("m-links");
+		links.style.opacity = (255-((width-300)-mouseX))/255;
+		var small = document.getElementById("small");
+    small.style.opacity = (255-opaq)/255;
+		var audiusapitext = document.getElementById("poop");
+    audiusapitext.style.opacity = opaq/255;
+}
+
+function checkSongStatus(){
+    for(var i = 0; i<song.length; i++){
+        var j = order[i];
+        if(song[j].isLoaded()){
+            if(song[j].currentTime()>0){
+                CurTimes[j] = song[j].currentTime();
+            }
+        }
+    }
+}
+
+function keyPressed() {
+  if (keyCode == 32) {
+      playSong(mouseBox,-1);
+  }
+}
+
+function playSong(num,jump){
+    if(SongPlaying != -1){
+        if(jump != -1){
+            if(SongPlaying != num){
+                song[SongPlaying].pause();
+                SongPlaying = num;
+                song[num].stop();
+                song[num].play(0,1,0.5,jump);
+            }
+            else{
+                song[num].stop();
+//                song[SongPlaying].stop();
+//                song[num].play(0,1,0.5,jump);
+							
+                song[num].jump(jump);
+								console.log("word");
+            }
+        }
+        else{
+            song[SongPlaying].pause();
+            if(SongPlaying != num){
+                if(mouseBox != -1){
+                    song[num].play();
+                    SongPlaying = num;
+                }
+                else{
+                    SongPlaying = -1;
+                }
+            }
+            else{
+                SongPlaying = -1;
+								
+            }
+        }
+    }
+    else{
+        SongPlaying = num;
+        if(jump != -1){
+            song[num].stop();
+            song[num].play(0,1,0.5,jump);
+        }
+        else{
+            if(mouseBox != -1){
+                song[num].play();
+            }
+        }
+    }
+}
+
+
+
+function checkMouse(){
+    var closest = -1;
+    var bY = 0;
+    for(var i = 0; i<rectY.length; i++){
+        var j = order[i];
+        var y = rectY[j] + windowHeight/2;
+        if(mouseX>x && mouseX<x+500 && mouseY>y-15 && mouseY<y+85){
+            closest = j;
+            bY = y;
+        }
+        bsize[j]+=((10-bsize[j])/10);
+    }
+    mouseBox = closest;
+    if(mouseBox != -1){
+        start = true;
+        if(song[closest].isLoaded()){
+            var Tline = createVector(x+50+(350*CurTimes[mouseBox]/song[mouseBox].duration()),bY+60);
+            if(dist(mouseX,mouseY,x+30,bY+30)<20){
+                lightbox.style('cursor','pointer');
+                if(mouseClicked){
+                    bsize[closest]+=((5-bsize[closest])/10);
+                }
+                else{
+                    bsize[closest]+=((15-bsize[closest])/10); 
+                }
+                if(mCount!=pmCount){
+                    pmCount = mCount;
+                    playSong(closest,-1);
+                }
+            }
+            if(dist(mouseX,mouseY,constrain(mouseX,x+50,x+400),bY+60)<5){
+                lightbox.style('cursor','pointer');   
+                strokeWeight(3);
+                stroke(100);
+                line(Tline.x,bY+60,mouseX,bY+60);
+                if(mouseClicked){
+                    Tline.x = mouseX
+                    stroke(255);
+                    line(x+50,Tline.y,mouseX,Tline.y);
+                }
+                if(mCount!=pmCount){
+                    pmCount = mCount;
+                    playSong(closest,(constrain(mouseX,x+51,x+399)-x-50)/350*song[closest].duration());
+                }
+            }
+            stroke(255);
+            strokeWeight(8);
+            if(dist(mouseX,mouseY,Tline.x,Tline.y)<5){
+                strokeWeight(10);
+            }
+            point(Tline.x,Tline.y);
+        }
+    }
+    if(start)
+		{
+        if(mouseX<x+500 && mouseX>x){
+            if(opaq<250){
+                opaq+=500/frameRate();
+								if(SongPlaying != -1){
+									sY=(SongPlaying-(rectY.length/2))*100;
+								}
+            }
+        }
+        else{
+            if(opaq>0){
+                opaq-=500/frameRate();
+            }
+        }
+    }
+}
+
+function createRect(){
+		noStroke();
+		if(start){
+			fill(0,opaq);
+			rect(x,0,500,windowHeight);
+		}
+    for(var i = 0; i<rectY.length; i++){
+        var j = order[i];
+        var y = rectY[j] + windowHeight/2;
+        var btype = 'play';
+        noStroke();
+				noFill();
+        var o = opaq-abs(y-(windowHeight/2))*1.5;
+        if(SongPlaying == j){
+            btype = 'pause';
+            fill(255, 30, 100,o);
+						if(opaq<250){
+							if(sY<0){
+								sY = floor(sY/(rectY.length*100))*(rectY.length*100)+(j*100)+10;
+							}
+							else{
+								sY = floor(sY/(rectY.length*100))*(rectY.length*100)-(j*100)+10;
+							}
+						}
+        }
+        rect(x,y-15,500,100);
+        if(song[j].isLoaded()){
+						pageIsloaded();
+            if(SongPlaying ==j ){
+                o = 255;
+            }
+            stroke(255,255,255,o);    
+            Pbutton(x+30,y+30,bsize[j],btype);
+            var tline = createVector(x+50+(350*CurTimes[j]/song[j].duration()),y+60);
+            strokeWeight(1);
+            stroke(100,o);
+            if(mouseBox == j){
+                strokeWeight(3);
+            }
+					 	if(SongPlaying ==j ){
+            		stroke(0,o);
+            }
+            line(x+50,y+60,x+400,y+60);
+            stroke(255,o);
+            line(x+50,y+60,tline.x,tline.y);
+            
+            noStroke();
+            fill(255,255,255,o);
+            strokeWeight(1);
+            text(translateNames(allInfo[j].title),250,y+30);
+            text(translateTimes(CurTimes[j]),x+410,y+60);
+            text(translateTimes(song[j].duration()),x+450,y+60);
+        }
+        else{
+            fill(255);
+            text('Loading',x+200,y);
+        }
+    }
+}
+
+function translateTimes(secs){
+    var mins = floor(secs/60);
+    var seconds = str(round(secs)-(mins*60));
+		if(seconds<10){
+			seconds = "0"+seconds;
+		}
+    var string = (mins+":"+seconds);
+    return string;
+}
+
+function translateNames(name){
+    var string = str(allInfo[0].user.name)+' - '+str(name);
+    return string;
+}
+
+
+function Pbutton(x,y,s,pp){
+    if(pp === 'play'){
+      strokeWeight(1);
+      var x1 = x-(s/2);
+      var x2 = x+s;
+      var y1 = y-sqrt(pow(s,2)-pow(s/2,2));
+      var y2 = y;
+      var y3 = y+sqrt(pow(s,2)-pow(s/2,2));
+      triangle(x1,y1,x2,y2,x1,y3);
+    }
+    else{
+      strokeWeight(2);
+      s+=5
+      line(x-(s/4),y+(s/2),x-(s/4),y-(s/2));
+      line(x+(s/4),y+(s/2),x+(s/4),y-(s/2));
+    }
+}
+
+function posRect(rel){
+  for(var i = 0; i<rectY.length; i++){
+    var y;
+    var dist = rectY.length;
+    var p = mod(((rel/100)-i),dist)-(dist/2);
+    if(p>0){
+       y = (steep/(p+1))-steep;
+    }
+    else{
+       y = ((steep/(p-1))+steep);
+    }
+    rectY.splice(i,1,y);
+  }
+}
+
+function setOrder(){
+  for(var i = 0; i<rectY.length; i++){
+    var ord = rectY.length-1;
+    for(var j = 0; j<rectY.length; j++){
+      if(i==j){
+        j++;
+      }
+      if(abs(rectY[i])>abs(rectY[j])){
+         ord--;
+      }
+      if(abs(rectY[i])==abs(rectY[j])){
+        if(rectY[i]>rectY[j]){
+          ord--;
+        }
+      }
+    }
+    order[ord] = i;
+  }
+}
+
+var specHistory = [];
+var lineDetail = 20;
+var specDetail = 100;
+var dragged = false;
+function drawSpectrum(){
+		var specY = (windowHeight-742)/2;
+    if(specHistory.length<100){
+        specHistory.push(0);
+    }
+    else{
+        var spectrum = fft.analyze();
+        speed = 0;
+        specHistory.splice(0,0,spectrum);
+        specHistory.pop();
+        stroke(255)
+        noFill();
+        strokeWeight(1);
+        for(var j = 0; j<lineDetail; j++){
+            var c = (100/lineDetail*j)*6
+            beginShape();
+            var tempSpec = specHistory[j];
+            for(var i = 0; i<specDetail; i++){
+								var exp = 1.7;
+								var divider = 10*(1024/detail);
+								var freq = round(pow(i,exp)/divider);
+								if(tempSpec != ""){
+                	amp = map(tempSpec[freq],0,256,400,100);
+								}
+                var tX = i*6+width/2;
+                curveVertex(tX-c,amp+i*1.5+c/4+specY);
+            }
+            endShape();
+        }
+    }
+}
+
+function detailBar(){
+		var detailBarY = windowHeight*7/8;
+    var mOver;
+    if(!mouseClicked){
+        dragged = false;
+    }
+    if(dragged){
+        lineDetail = ceil(constrain((mouseX-(x+30)),1,440)/5);
+    }
+    if(mouseX>x&&mouseX<x+460&&mouseY>detailBarY&&mouseY<detailBarY+40){
+        mOver = true;
+        strokeWeight(5);
+        lightbox.style('cursor','pointer');
+				
+        if (mouseClicked){  
+            dragged = true;
+        }
+        
+    }
+    else{
+        mOver = false;
+        strokeWeight(2);
+    }
+    stroke(100);
+    line(x+30,detailBarY+20,x+470,detailBarY+20);
+    stroke(255);
+    line(x+30,detailBarY+20,x+30+(lineDetail*5),detailBarY+20);
+    if(mOver||dragged){
+        ellipse(x+30+(lineDetail*5),detailBarY+20,10);
+    }
+}
+		</script>
+<!--    <script src="music.js"></script>-->
+    
+
+  </head>
+    
+  <body>
+      
+      <div id="container">
+          <h1 id="header" class="title">MUSIC TERRAIN</h1>
+					<div class = "loader" id = "loader">
+						<img class = "loader-gif" src="images/MTloader.gif">
+						<p>loading</p>
+						<script>
+//							window.addEventListener('load', () => {
+//								document.getElementById("loader").style.opacity = 0;
+//								document.getElementById("loader").style.pointerEvents = none;
+//							});
+							function pageIsloaded(){
+								document.getElementById("loader").style.opacity = "0";
+								document.getElementById("loader").style.pointerEvents = "none";
+							}
+						</script>
+					</div>
+          <div class="lightbox">
+              <div class="lightbox-box">
+                <div class="lightbox-content" id="lightbox-c">
+                </div>
+              </div>
+          </div>
+					<div class = "ext-links">
+						<p style="padding-bottom: 10px;" id="small">all songs by rai.</p>
+						<ul id="m-links" style="list-style-type:none;list-style:none;padding-left:0;">
+							<li><a href = 'https://soundcloud.com/officialrai'>soundcloud</a></li>
+							<li><a href = 'https://open.spotify.com/artist/02XjTOUw55eQr8KgsAHRYD?si=3XG6_fSXQPa_BaSzKcegrg'>spotify</a></li>
+							<li><a href = 'https://www.youtube.com/channel/UCwN2fwP_oEyHNPCFZmAicPQ'>youtube</a></li>
+							<li><a href = 'https://www.instagram.com/this.is.rai/'>instagram</a></li>
+							<li><a href = 'https://audius.co/officialrai'>audius</a></li>
+						</ul>
+					</div>
+				<p style="color:white; font-size: 10px; position: absolute; margin: 0px; bottom: 12vh; left: 130px;">zoom</p>
+				<div class = "audius" id = "poop">
+					<p style='margin: 0px;'>Pulled from the <a href = 'https://audius.org/api'>Audius Api</a></p>
+				</div>
+			<footer class="site-footer">
+						<li>&copy;2022<a href="https://rasaichimori.com"> rasaichimori</a>
+						</li><!-- .footer-copyright -->
+			</footer><!-- #site-footer -->
+      </div>
+    </body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music visualizer</title>
+    <link rel="icon" href="images/musicVisualLogo.png">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="musicVisual.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script> 
+  </head>
+    
+  <body style="color: #d6d2b5">
+      <div class = "loader">
+				<div class = "blockdoor1" id="bd1"></div>
+				<div class = "blockdoor2" id="bd2"></div>
+				<div class = "glitch-cont" id = "glitch-cont">
+					<p class="glitch" id = "glitch">
+						<span aria-hidden="true">loading</span>
+						loading
+						<span aria-hidden="true">loading</span>
+					</p>
+				</div>
+				<button class = "enter" id="enter" onclick="enter();">enter</button>
+			</div>
+      <div id="container">
+					<div class ="background" id = "bg"></div>
+					<div id="p5canv" class="p5canv"></div>
+          <h1 id="header" class="title">MUSIC VISUALIZER</h1>
+					<div class="slider-cont" id="slider-cont">
+						<div class ="settingsTitle">settings</div>
+						<div class ="slider-box">
+							<p>edge smoothing:</p>
+							<p id="value0" class="values">0</p>
+							<input class="slider" id="slider0" type="range" min="1" max="50" value= "5" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>speed smoothing:</p>
+							<p id="value1" class="values">0</p>
+							<input class="slider" id="slider1" type="range" min="1" max="20" value= "2" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>number of bars:</p>
+							<p id="value2" class="values">0</p>
+							<input class="slider" id="slider2" type="range" min="10" max="300" value= "150" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>bar thickness:</p>
+							<p id="value3" class="values">0</p>
+							<input class="slider" id="slider3" type="range" min="1" max="10" value= "5" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>width:</p>
+							<p id="value4" class="values">0</p>
+							<input class="slider" id="slider4" type="range" min="200" max="1000" value= "1000" step="1">
+						</div>
+						<div class ="slider-box">
+							<p>height:</p>
+							<p id="value5" class="values">0</p>
+							<input class="slider" id="slider5" type="range" min="20" max="300" value= "150" step="1">
+						</div>
+						<div class ="color-cont">
+							<p>color mode:</p>
+							<div class ="color-mode">
+								<div class = "color" id="color0" onclick="changeColors(this);" style="background-color: #fff"></div>
+								<div class = "color" id="color1" onclick="changeColors(this);" style="background-color: #000"></div>
+								<div class = "color" id="color2" onclick="changeColors(this);" style="background-color: #d6d2b5"></div>
+								<div class = "color" id="color3" onclick="changeColors(this);" style="background-color: #93ae88"></div>
+								<div class = "color" id="color4" onclick="changeColors(this);" style="background-color: #d48c8c"></div>
+								<div class = "color" id="color5" onclick="changeColors(this);" style="background-color: #a2b9c5"></div>
+								<div class = "color" id="color6" onclick="changeColors(this);" style="background-color: #f3d0cf"></div>
+							</div>
+						</div>
+						<div class ="bg-cont">
+							<p>background:</p>
+							<div class ="bg-mode">
+								<div class = "bg-thumb" id="bg-white" onclick="changeBg(this);changeColors(document.getElementById('color3'))" style ="background-color: #eeede9; background-image: none;"></div>
+								<div class = "bg-thumb" id="bg-black" onclick="changeBg(this);changeColors(document.getElementById('color2'))" style ="background-color: #111; background-image: none;"></div>
+								<div class = "bg-thumb" id="bg-sky" onclick="changeBg(this);changeColors(document.getElementById('color6'))" style ="background-color: #eeede9; background-image: url(images/bg.jpg);"></div>
+								<div class = "bg-thumb" id="bg-gif" onclick="changeBg(this);changeColors(document.getElementById('color0'))" style ="background-color: #eeede9; background-image: url(images/bg2.gif);"></div>
+								<label class = "bg-thumb" id="bg-plus">
+									<input id="pic-uploader" type="file" accept="image/*">&plus;
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="controller">
+						<div class="play-button" id="play-button"></div>
+						<div class="song-name" id="song-name">rai - skyburst!</div>
+						<div class="timeline">
+							<input class="slider" oninput="updateTimeline(this.value)" id="TLslider" type="range" min="0" max="1000" value="0" step="1">
+							<div id="timeline-current-display">00:00</div>
+							<div id="timeline-duration-display">00:00</div>
+						</div>
+						
+					</div>
+					<div class ="settings" id="settings">
+						hover for settings
+					</div>
+				
+				
+					<button class= "lightbox-button" onclick="openLb();">Upload Your Song</button>
+					<div class = "lightbox" id="lightbox">
+						<div class ="lightboxBg" onclick="closeLb()"></div>
+						<span class="close" onclick="closeLb()">&times;</span>
+						
+						<div class ="lightbox-window">
+							<div class = "drop-zone" id="drop-zone">
+								<div class="drop-zone__thumb" data-label="timewarp.mp3" id="dzt"></div>
+								<span id="lbWords">Drag your file here</span>
+								<label class="custom-file-upload">
+									<input id="uploader" type="file" accept="audio/*">Upload Song
+								</label>
+								<img src="images/arrow.png" id="arrow">
+								<span id="lbWords2">Or click this button</span>
+								<button class = "done" id = "done" onclick="closeLb();playButtonPause();">done</button>
+							</div>
+							
+						</div>
+					</div>
+				
+<!--				for the lightbox and the uploading drop zones-->
+				<script>
+					function openLb(){
+						document.getElementById("lightbox").style.display = "block";
+					}
+					function closeLb(){
+						document.getElementById("lightbox").style.display = "none";
+					}
+					const dzElement = document.getElementById("drop-zone");
+					const inputElement = document.getElementById("uploader");
+					const dztElement = document.getElementById("dzt");
+					const lbWordsElement = document.getElementById("lbWords");
+					const songNameElement = document.getElementById("song-name");
+					const doneElement = document.getElementById("done");
+					inputElement.addEventListener("change", (e) => {
+						if (inputElement.files.length>0) {
+							var fileName = inputElement.files[0].name;
+							dztElement.dataset.label = fileName;
+							songNameElement.innerHTML = fileName.slice(0, -4);
+							dztElement.style.display = "block";
+							doneElement.style.display = "block";
+							lbWordsElement.style.display = "none";
+							getNewSong();
+						}
+					});
+					dzElement.addEventListener("dragover", e=>{
+						e.preventDefault();
+						dzElement.classList.add("drop-zone--over");
+					});
+					["dragleave","dragend"].forEach(type => {
+						dzElement.addEventListener(type, e =>{
+							dzElement.classList.remove("drop-zone--over");
+						});
+					});
+					dzElement.addEventListener("drop", e =>{
+						e.preventDefault();
+						if(e.dataTransfer.files.length>0){
+							inputElement.files = e.dataTransfer.files;
+							var fileName = inputElement.files[0].name;
+							dztElement.dataset.label = fileName;
+							songNameElement.innerHTML = fileName.slice(0, -4);
+							dztElement.style.display = "block";
+							doneElement.style.display = "block";
+							dzElement.classList.remove("drop-zone--over");
+							getNewSong();
+						}
+					});
+					
+				</script>
+				
+<!--				to change all the text colors-->
+				<script>
+					var getColor = '#d6d2b5';
+					function changeColors(element){
+						getColor = element.style.backgroundColor;
+						document.body.style.color = getColor;
+					}
+				
+				</script>
+				
+<!--				to change the background color-->
+				<script>
+					var bgElement = document.getElementById("bg");
+					function changeBg(element){
+						var getBgColor = element.style.backgroundColor;
+						var getBgImg = element.style.backgroundImage;
+						bgElement.style.backgroundColor = getBgColor;
+						bgElement.style.backgroundImage = getBgImg;						document.body.style.backgroundColor = getBgColor;
+						if(getBgImg == 'none'){
+							settingsBox.style.backgroundImage = 'linear-gradient(to right, rgba(0,0,0,0) 1%,'+getBgColor+' 15%)';
+						}
+						else{
+							settingsBox.style.backgroundImage = 'none';
+							
+						}
+					}
+				
+				</script>
+				
+			 <script>
+					const picInputElement = document.getElementById("pic-uploader");
+					picInputElement.addEventListener("change", (e) => {
+						if (picInputElement.files.length>0) {
+							var picFile = picInputElement.files[0];
+							const reader = new FileReader();
+							
+							reader.readAsDataURL(picFile);
+							reader.onload = () =>{
+								bgElement.style.backgroundImage = `url('${reader.result}')`;
+							}
+						}	
+					});
+				</script>
+				
+<!--				for the play button in the controller-->
+			<script>
+				var playButton = document.getElementById("play-button");
+				playButton.style.backgroundImage = 'url("images/play.png")';
+				playButton.addEventListener("mousedown",function(e){
+					checkPlayButton();
+				})
+				function checkPlayButton(){		
+					if(playButton.style.backgroundImage=='url("images/play.png")'){
+						playButtonPause();
+						if(timeline.value>999){
+							song.play(0,1,1,0);
+							output.play(0,1,1,0);
+							song.jump(0);
+							output.jump(0);
+							songFinished = false;
+						}
+					}
+					else{
+						playButtonPlay();
+					}
+				}
+				document.addEventListener('keyup', event => {
+					if (event.code === 'Space') {
+						checkPlayButton();
+					}
+				})
+				
+				function playButtonPause(){
+					playButton.style.backgroundImage = 'url("images/pause.png")';
+				}
+				function playButtonPlay(){
+					playButton.style.backgroundImage = 'url("images/play.png")';
+				}
+			</script>
+				
+<!--				for the timeline slider for the current song-->
+			<script>										
+				var timeline = document.getElementById("TLslider");
+				var TLdragging = false;
+				function updateTimeline(tvalue){
+					var x = Math.round(tvalue/10);
+					var c = 'linear-gradient(90deg,'+getColor+' '+x+'%, rgb(50,50,50) '+x+'%)'
+					timeline.style.background = c;
+				}
+				timeline.addEventListener("input",function(e){
+					TLdragging = true;
+				})
+				timeline.addEventListener("change",function(e){
+					TLdragging = false;
+				})
+			</script>
+				
+    	<script src="music-visual.js"></script>
+
+			<footer class="site-footer">
+						<li>&copy;2022<a href="https://rasaichimori.com"> rasaichimori</a>
+						</li><!-- .footer-copyright -->
+			</footer><!-- #site-footer -->
+      </div>
+    </body>
+</html>

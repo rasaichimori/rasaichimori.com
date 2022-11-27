@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    <title>rasa ichimori</title>
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="styles.css" id="main-style">
+    <link rel="stylesheet" href="projects.css">
+		<meta name="description" content="all web projects made by yours truly" />
+		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+		<script defer src="node_modules/swup/dist/swup.min.js"></script> 
+		<script defer src="node_modules/@swup/head-plugin/dist/SwupHeadPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/preload-plugin/dist/SwupPreloadPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/progress-plugin/dist/SwupProgressPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/debug-plugin/dist/SwupDebugPlugin.min.js"></script>
+		<script defer src="setup.js"></script> 
+<!--		<script defer src="projects.js"></script>-->
+		
+  </head>
+    
+  <body>
+		<div class = "loader" id="loader">
+			<div class ="loader-circle" id="loader-circle"></div>
+			<img src="loader.gif">
+			<p>loading...</p>
+		</div>
+		<nav>
+			<div class = "menu" id="menu">
+				<div class = "menuDiv" id="menuDiv">
+					<a href="/index.html"><li>home</li></a>
+					<a href="/aboutme.html"><li>about me</li></a>
+					<a href="/portfolio.html"><li>portfolio</li></a>
+					<a href="/contact.html"><li>contact</li></a>
+				</div>
+			</div>
+		</nav>
+		<main id="swup" class="transition-circle">
+			<div class = "p5canvas" id= "p5canvas"></div>
+			<div class = "blobs" id="blobs">
+				<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+					<defs>
+						<filter id="goo">
+							<fegaussianBlur in="SourceGraphic" stddeviation="30" result="blur" />
+							<fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 90 -30" result="goo"/>
+						</filter>
+					</defs>
+				</svg>
+
+				<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob1">
+					<path fill="#93ae88" d="M47.9,-75.5C59.9,-66.9,65.7,-49.8,68.8,-34.1C71.9,-18.3,72.3,-3.9,68.6,8.7C65,21.4,57.5,32.3,48.8,42.2C40.1,52.2,30.3,61,19.5,62.3C8.7,63.5,-3.1,57.1,-17.1,54.6C-31.2,52.2,-47.6,53.8,-59.6,47.5C-71.6,41.1,-79.2,26.8,-78,13.2C-76.8,-0.3,-66.8,-13.1,-59.8,-26.9C-52.9,-40.7,-49.1,-55.6,-39.6,-65.3C-30.2,-75.1,-15.1,-79.8,1.5,-82.1C18,-84.4,36,-84.2,47.9,-75.5Z" transform="translate(100 100)"/>
+				</svg>
+
+				<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob2">
+					<path fill="#d48c8c" d="M43.7,-72.1C56.8,-68.2,67.5,-56.7,66.8,-43.4C66.1,-30.1,53.8,-15.1,52.8,-0.6C51.8,13.9,62.1,27.8,62.7,40.9C63.3,53.9,54.2,66,42.1,73.8C30.1,81.6,15,85.1,0,85.1C-15.1,85.2,-30.2,81.9,-39.9,72.7C-49.6,63.6,-53.9,48.6,-53,35.5C-52,22.4,-45.8,11.2,-41.8,2.3C-37.7,-6.5,-35.8,-13,-33.1,-19.9C-30.5,-26.7,-27.1,-33.9,-21.4,-42C-15.8,-50.2,-7.9,-59.4,3.7,-65.9C15.3,-72.3,30.7,-76,43.7,-72.1Z" transform="translate(100 100)" />
+				</svg>
+
+				<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob3">
+					<path fill="#d6d2b5" d="M41.4,-70.8C52.6,-65.2,60,-52,64.1,-39C68.1,-26,68.7,-13,64.6,-2.4C60.5,8.2,51.6,16.4,46,26.8C40.5,37.2,38.3,49.9,31.2,57.3C24.1,64.6,12,66.7,-0.3,67.2C-12.6,67.7,-25.2,66.6,-34.5,60.5C-43.7,54.3,-49.5,43.2,-51.2,32.2C-52.9,21.3,-50.4,10.7,-47.4,1.7C-44.4,-7.2,-40.9,-14.4,-39.5,-25.9C-38.2,-37.3,-38.9,-53,-32.7,-61.6C-26.5,-70.2,-13.2,-71.6,0.9,-73.1C15.1,-74.7,30.1,-76.5,41.4,-70.8Z" transform="translate(100 100)" />
+				</svg>
+			</div>
+				<div class = "title">
+							<h1>PROJECTS</h1>
+				</div>
+				<div class = "project-list">
+					<li><a href="projects/musicVisual.html">music visualizer</a></li>
+					<li><a href="https://koipond.ink">koi pond</a></li>
+					<li><a href="https://nomuyo.com">nomuyo</a></li>
+					<li><a href="projects/particleFun.html">particle fun!</a></li>
+					<li><a href="projects/musicTerrain.html">music terrain</a></li>
+					<li><a href="projects/pulsate.html">pulsate</a></li>
+					<li><a href="https://dozeculture.com">doze culture</a></li>
+					<li><a href="https://movingcircles.netlify.app">moving circles</a></li>
+					<li><a href="projects/gravityBalls.html">gravity balls</a></li>
+					<li><a href="projects/point.html">point</a></li>
+					<li><a href="projects/waterWave.html">3D wave</a></li>
+					<li><a href="https://editor.p5js.org/mangii/sketches">p5</a></li>
+				</div>
+				<div class="lightbox" id="lightbox">
+				</div>
+				<div id="frameCount" style="position: fixed;top:0;"></div>
+	<!--          <p>Welcome to my page.</p>-->
+				<footer class="site-footer">
+							<li>&copy;2022<a href="https://rasaichimori.com"> rasaichimori</a>
+							</li><!-- .footer-copyright -->
+				</footer><!-- #site-footer -->
+		</main>
+  </body>
+</html>

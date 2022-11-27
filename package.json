@@ -1,0 +1,24 @@
+{
+  "name": "rasaichimori.com",
+  "version": "1.0.0",
+  "description": "for my portfolio website!",
+  "main": "setup.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "portfolio",
+    "rasa"
+  ],
+  "author": "rasa",
+  "license": "ISC",
+  "dependencies": {
+    "@swup/debug-plugin": "^1.0.3",
+    "@swup/head-plugin": "^1.2.0",
+    "@swup/preload-plugin": "^1.0.3",
+    "@swup/progress-plugin": "^1.1.2",
+    "swup": "^2.0.15",
+    "three": "^0.141.0"
+  }
+}

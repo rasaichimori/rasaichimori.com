@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is me! Thanks for taking the time!" />
+      
+    <title>About Me</title>
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="styles.css" id="main-style">
+    <link rel="stylesheet" href="aboutme.css">
+		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+		<script defer src="three.min.js" id="three"></script>
+		<script defer src="node_modules/swup/dist/swup.min.js"></script> 
+		<script defer src="node_modules/@swup/head-plugin/dist/SwupHeadPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/preload-plugin/dist/SwupPreloadPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/progress-plugin/dist/SwupProgressPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/debug-plugin/dist/SwupDebugPlugin.min.js"></script>
+		<script defer src="setup.js"></script> 
+		<script defer src="globe.js"></script>
+		
+  </head>
+    
+  <body>
+		<div class = "loader" id="loader">
+			<div class ="loader-circle" id="loader-circle"></div>
+			<img src="loader.gif">
+			<p>loading...</p>
+		</div>
+		<nav>
+			<div class = "menu" id="menu">
+				<div class = "menuDiv" id="menuDiv">
+					<a href="/index.html"><li>home</li></a>
+					<a href="/aboutme.html"><li>about me</li></a>
+					<a href="/portfolio.html"><li>portfolio</li></a>
+					<a href="/contact.html"><li>contact</li></a>
+<!--
+					<a href="javascript:skipTL('top')"><li>Top</li></a>
+					<a href="javascript:skipTL('timeline')"><li>Timeline</li></a>
+					<a href="javascript:skipTL('interests')"><li>Interests</li></a>
+-->
+				</div>
+			</div>
+		</nav>
+		<main id="swup" class="transition-circle">
+			<div class = "pageLength" id="pageLength">
+
+			</div>
+<!--			<div class = "koi" id= "koi"></div>-->
+			<div class = "pageContent" id="pageContent">
+				<div class = "p5canvas" id= "p5canvas"></div>
+				
+				<div class = "blobs" id="blobs">
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob1">
+						<path fill="#93ae88" d="M25,-49.6C32.7,-38.8,39.7,-32.8,48.1,-25.4C56.5,-17.9,66.4,-9,71.9,3.1C77.3,15.3,78.3,30.5,72.6,42.7C66.9,54.8,54.5,63.9,41.3,69.2C28.1,74.6,14,76.2,-0.8,77.6C-15.6,79,-31.3,80.1,-45.6,75.4C-59.9,70.7,-73,60.2,-80,46.7C-87.1,33.1,-88.1,16.6,-87.2,0.5C-86.3,-15.5,-83.4,-31,-75.4,-42.9C-67.5,-54.9,-54.4,-63.3,-41,-70.9C-27.6,-78.5,-13.8,-85.3,-2.6,-80.8C8.6,-76.3,17.2,-60.5,25,-49.6Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob2">
+						<path fill="#776F5F" d="M34.2,-61.4C45.4,-52.7,56.4,-45.8,57.8,-35.9C59.2,-26,51.1,-13,52,0.6C53,14.1,63.1,28.2,63.9,42C64.7,55.8,56.3,69.3,44.1,73.5C31.9,77.7,15.9,72.5,2.8,67.7C-10.4,62.9,-20.8,58.5,-28.4,51.7C-36,44.8,-40.7,35.5,-44.3,26.5C-47.9,17.5,-50.3,8.7,-51.9,-0.9C-53.4,-10.5,-54.1,-21.1,-48.8,-27.1C-43.4,-33.1,-32.1,-34.6,-23,-44.5C-13.9,-54.5,-7,-72.8,2.3,-76.7C11.5,-80.6,22.9,-70.1,34.2,-61.4Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob3">
+						<path fill="#dbe5e2" d="M33.6,-56.5C47.3,-50.2,64.8,-48.9,71.8,-40.3C78.8,-31.7,75.3,-15.8,68.5,-3.9C61.8,8.1,51.9,16.1,46,26.7C40.1,37.2,38.3,50.2,31.3,55.2C24.3,60.2,12.2,57.1,-1.9,60.4C-15.9,63.6,-31.9,73.2,-44.1,71.3C-56.3,69.3,-64.9,55.8,-71.2,42C-77.6,28.2,-81.9,14.1,-77.8,2.4C-73.7,-9.4,-61.3,-18.8,-51.7,-27C-42.1,-35.2,-35.3,-42.3,-27.1,-51.7C-19,-61.2,-9.5,-73.2,0.2,-73.6C9.9,-73.9,19.9,-62.8,33.6,-56.5Z" transform="translate(100 100)" />
+					</svg>
+
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob5">
+						<path fill="#c2c2c2" d="M26.6,-28.2C37.7,-22.5,52.1,-17.1,57,-7.3C62,2.4,57.5,16.5,48.4,23.7C39.2,30.9,25.3,31.1,12.2,37.8C-1,44.5,-13.3,57.6,-23.8,57.3C-34.2,57,-42.7,43.3,-53.1,28.9C-63.4,14.6,-75.6,-0.5,-73.5,-13.1C-71.5,-25.7,-55.1,-36,-40.5,-41C-25.8,-46.1,-12.9,-46,-2.6,-42.9C7.8,-39.9,15.6,-33.9,26.6,-28.2Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob6">
+						<path fill="#b8aa8c" d="M27.3,-52.7C36.8,-41.9,46.8,-37.3,52.8,-29.6C58.7,-21.9,60.6,-10.9,58.5,-1.2C56.4,8.5,50.3,17,43.3,23C36.3,28.9,28.5,32.3,21.1,39C13.7,45.8,6.9,55.8,-1.6,58.6C-10.1,61.4,-20.2,57,-29.9,51.6C-39.6,46.2,-48.8,39.9,-57.4,31.1C-65.9,22.3,-73.7,11.2,-76.2,-1.4C-78.6,-14,-75.6,-28,-68.8,-39.7C-61.9,-51.4,-51.2,-60.8,-39.1,-70.1C-27,-79.4,-13.5,-88.5,-2.3,-84.6C8.9,-80.6,17.9,-63.5,27.3,-52.7Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob7">
+						<path fill="#e6ddd4" d="M29.5,-52.6C37.7,-46.4,43.4,-37.4,50.4,-28.1C57.4,-18.9,65.9,-9.4,68.7,1.7C71.6,12.7,68.9,25.5,64,38.4C59,51.3,51.8,64.3,40.8,73.5C29.8,82.7,14.9,88.1,2.2,84.3C-10.5,80.5,-21,67.5,-30.4,57.4C-39.8,47.2,-48.2,39.9,-51.6,30.8C-54.9,21.7,-53.4,10.9,-55.9,-1.4C-58.4,-13.8,-65,-27.5,-63.9,-40.7C-62.9,-54,-54.4,-66.6,-42.5,-70.6C-30.5,-74.7,-15.3,-70,-2.3,-66C10.7,-62,21.3,-58.7,29.5,-52.6Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob8">
+						<path fill="#bab78c" d="M42.2,-76.9C51.2,-67.8,52.6,-49.5,54.5,-35.2C56.4,-20.8,58.8,-10.4,60.7,1.1C62.7,12.7,64.3,25.4,60.4,36.2C56.5,47.1,47,56.1,36,61C25,66,12.5,66.9,-0.2,67.3C-13,67.7,-26,67.7,-36.1,62.2C-46.2,56.7,-53.4,45.8,-59.3,34.6C-65.2,23.3,-69.9,11.7,-72.6,-1.6C-75.3,-14.8,-76,-29.5,-70.2,-41C-64.4,-52.5,-52.1,-60.7,-39.3,-67.6C-26.5,-74.4,-13.3,-80,1.7,-82.8C16.6,-85.7,33.2,-85.9,42.2,-76.9Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob9">
+						<path fill="#93ae88" d="M29.8,-57.2C38.7,-46.4,46.2,-38.7,57.3,-29.7C68.3,-20.7,83,-10.3,82,-0.6C81.1,9.2,64.5,18.4,53.4,27.5C42.4,36.6,36.9,45.5,28.9,52.6C20.9,59.7,10.5,65.1,-3.1,70.4C-16.6,75.7,-33.2,81,-47.4,77.5C-61.6,73.9,-73.3,61.5,-75.1,47.1C-76.9,32.7,-68.8,16.4,-68.1,0.4C-67.3,-15.5,-73.9,-31,-70.7,-42.9C-67.4,-54.9,-54.4,-63.3,-41,-71.6C-27.6,-79.8,-13.8,-87.8,-1.7,-84.9C10.4,-81.9,20.8,-68,29.8,-57.2Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob10">
+						<path fill="#c07561" d="M41.3,-75.9C50.2,-66.3,51.8,-48.6,59.4,-34.6C67.1,-20.6,80.8,-10.3,83.3,1.4C85.8,13.2,77.1,26.3,68.2,38.2C59.4,50.1,50.3,60.8,38.9,64C27.5,67.2,13.7,63.1,-1.4,65.5C-16.6,68,-33.1,77,-45.3,74.3C-57.5,71.5,-65.3,56.8,-70.7,42.5C-76.1,28.1,-79.2,14.1,-81.4,-1.3C-83.7,-16.6,-85,-33.2,-78.1,-45C-71.2,-56.8,-56,-63.8,-41.6,-70.2C-27.3,-76.5,-13.6,-82.3,1.3,-84.5C16.2,-86.7,32.4,-85.4,41.3,-75.9Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob11">
+						<path fill="#e6ddd4" d="M30,-48.5C41,-45.6,53.5,-41.8,65.2,-33.6C77,-25.4,88,-12.7,87,-0.6C86,11.5,73,23.1,61,30.9C49.1,38.8,38.2,43,28.2,50C18.2,57,9.1,66.7,-1.9,70C-12.9,73.2,-25.7,70.1,-37.9,64.3C-50,58.6,-61.4,50.3,-66.2,39.2C-71,28,-69.1,14,-65.7,2C-62.3,-10.1,-57.3,-20.2,-50.5,-27.7C-43.6,-35.2,-34.8,-40.1,-26,-44.3C-17.3,-48.6,-8.7,-52.2,0.4,-53C9.5,-53.7,19,-51.5,30,-48.5Z" transform="translate(100 100)" />
+					</svg>
+				</div>
+
+				<div class = "pages"  id= "home-page">
+					<div class = "title">
+								<h1>About Me</h1>
+					</div>
+
+					<svg viewBox="-7 0 130 130" id="thanks">
+
+						<path id="MyPath" fill="none"
+									d="m10,45c53,-33 96,3 96,3" />
+
+						<text font-size="7.3px" font-family="lineto"><textPath href="#MyPath">thanks for checking me out!</textPath></text>
+
+					</svg>
+
+					<div class = "scrollanimation" onclick="window.scrollTo(0,window.innerHeight*2)">
+						<div class = "mouse">
+							<div class = "scrollwheel">
+							</div>
+						</div>
+						↓	
+					</div>
+				</div>
+
+
+
+				<div class = "pages" id="aboutme-page">
+					<h2 class = "titles" id="aboutme-title">About Me</h2>
+					<img class ="profile-img" id ="profile-img" src="images/profile/profile-outline.png">
+
+					<div class = "aboutme-p">
+						<p>Hi! My name is Rasa. I'm a just a <span style = "font-family: poppins; font-size: 16px"><nobr>dude</nobr></span> from Japan, living life in America. </p>
+						<p>Nice to meet you!</p>
+						<div>
+							<br>
+							<br>
+							Keep scrolling to see my life story... <br> or click <a href = "javascript:skipTL('interests')" id = "skip">here</a> 
+						to skip to my interests
+						<div id = "speechBubble" >don't worry, I won't be offended :)</div>
+						</div>
+
+
+					</div>
+				</div>
+
+
+				<div class = "pages" id="timeline-page">
+					<h2 class = "titles" id="timeline-title">About Me</h2>
+					<div class = "blobs" id="timelineBlobs">				
+						<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "TLblob1">
+							<path fill="#bab78c" d="M42.2,-76.9C51.2,-67.8,52.6,-49.5,54.5,-35.2C56.4,-20.8,58.8,-10.4,60.7,1.1C62.7,12.7,64.3,25.4,60.4,36.2C56.5,47.1,47,56.1,36,61C25,66,12.5,66.9,-0.2,67.3C-13,67.7,-26,67.7,-36.1,62.2C-46.2,56.7,-53.4,45.8,-59.3,34.6C-65.2,23.3,-69.9,11.7,-72.6,-1.6C-75.3,-14.8,-76,-29.5,-70.2,-41C-64.4,-52.5,-52.1,-60.7,-39.3,-67.6C-26.5,-74.4,-13.3,-80,1.7,-82.8C16.6,-85.7,33.2,-85.9,42.2,-76.9Z" transform="translate(100 100)" />
+						</svg>
+						<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "TLblob2">
+							<path fill="#e6ddd4" d="M29.8,-57.2C38.7,-46.4,46.2,-38.7,57.3,-29.7C68.3,-20.7,83,-10.3,82,-0.6C81.1,9.2,64.5,18.4,53.4,27.5C42.4,36.6,36.9,45.5,28.9,52.6C20.9,59.7,10.5,65.1,-3.1,70.4C-16.6,75.7,-33.2,81,-47.4,77.5C-61.6,73.9,-73.3,61.5,-75.1,47.1C-76.9,32.7,-68.8,16.4,-68.1,0.4C-67.3,-15.5,-73.9,-31,-70.7,-42.9C-67.4,-54.9,-54.4,-63.3,-41,-71.6C-27.6,-79.8,-13.8,-87.8,-1.7,-84.9C10.4,-81.9,20.8,-68,29.8,-57.2Z" transform="translate(100 100)" />
+						</svg>
+						<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "TLblob3">
+							<path fill="#959589" d="M41.3,-75.9C50.2,-66.3,51.8,-48.6,59.4,-34.6C67.1,-20.6,80.8,-10.3,83.3,1.4C85.8,13.2,77.1,26.3,68.2,38.2C59.4,50.1,50.3,60.8,38.9,64C27.5,67.2,13.7,63.1,-1.4,65.5C-16.6,68,-33.1,77,-45.3,74.3C-57.5,71.5,-65.3,56.8,-70.7,42.5C-76.1,28.1,-79.2,14.1,-81.4,-1.3C-83.7,-16.6,-85,-33.2,-78.1,-45C-71.2,-56.8,-56,-63.8,-41.6,-70.2C-27.3,-76.5,-13.6,-82.3,1.3,-84.5C16.2,-86.7,32.4,-85.4,41.3,-75.9Z" transform="translate(100 100)" />
+						</svg>
+						<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "TLblob4">
+							<path fill="#c88669" d="M31.5,-51.4C45,-46.7,63.2,-46.8,74.6,-39.1C85.9,-31.3,90.4,-15.7,90.6,0.1C90.8,15.9,86.6,31.7,75.4,39.8C64.3,47.9,46.2,48.3,32.5,54.4C18.7,60.4,9.4,72.2,-3.5,78.3C-16.5,84.5,-32.9,85,-45,78C-57.1,71,-64.9,56.5,-67.5,42.2C-70.1,28,-67.5,14,-68.7,-0.7C-69.9,-15.4,-74.9,-30.8,-71.5,-43.6C-68.1,-56.4,-56.3,-66.7,-43,-71.5C-29.6,-76.4,-14.8,-75.8,-2.9,-70.7C8.9,-65.6,17.9,-56.1,31.5,-51.4Z" transform="translate(100 100)" />
+						</svg>
+						<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "TLblob5">
+							<path fill="#93ae88" d="M37.3,-66C47.7,-58.6,55,-47.3,64.7,-35.7C74.3,-24,86.2,-12,89.5,1.9C92.8,15.8,87.4,31.6,75.4,39.1C63.3,46.6,44.7,45.8,31,53.1C17.4,60.3,8.7,75.6,-3.8,82.2C-16.3,88.8,-32.6,86.7,-41.5,76.7C-50.4,66.8,-52,48.8,-60.2,34.7C-68.4,20.6,-83.3,10.3,-88.6,-3.1C-93.9,-16.4,-89.6,-32.8,-77.4,-40.1C-65.3,-47.4,-45.3,-45.6,-31.1,-50.8C-16.9,-56,-8.4,-68.2,2.5,-72.5C13.5,-76.9,26.9,-73.4,37.3,-66Z" transform="translate(100 100)" />
+						</svg>
+						<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "TLblob6">
+							<path fill="#c4bc84" d="M31.9,-60.9C38.5,-51.4,39,-37.1,42.2,-26.2C45.3,-15.3,51,-7.6,54.4,2C57.9,11.6,59.1,23.2,53.3,29.5C47.5,35.8,34.7,36.9,24.6,45.1C14.6,53.4,7.3,68.8,-1.8,72C-10.9,75.1,-21.8,65.9,-30.8,57C-39.8,48.1,-46.8,39.6,-51.4,30.2C-56,20.7,-58.1,10.4,-61.3,-1.9C-64.5,-14.1,-68.9,-28.2,-63.8,-36.7C-58.7,-45.2,-44.1,-48.1,-31.9,-54.4C-19.7,-60.6,-9.8,-70.2,1.4,-72.6C12.6,-75,25.3,-70.3,31.9,-60.9Z" transform="translate(100 100)" />
+						</svg>
+						<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "TLblob7">
+							<path fill="#67695E" d="M30,-48.5C41,-45.6,53.5,-41.8,65.2,-33.6C77,-25.4,88,-12.7,87,-0.6C86,11.5,73,23.1,61,30.9C49.1,38.8,38.2,43,28.2,50C18.2,57,9.1,66.7,-1.9,70C-12.9,73.2,-25.7,70.1,-37.9,64.3C-50,58.6,-61.4,50.3,-66.2,39.2C-71,28,-69.1,14,-65.7,2C-62.3,-10.1,-57.3,-20.2,-50.5,-27.7C-43.6,-35.2,-34.8,-40.1,-26,-44.3C-17.3,-48.6,-8.7,-52.2,0.4,-53C9.5,-53.7,19,-51.5,30,-48.5Z" transform="translate(100 100)" />
+						</svg>
+					</div>
+					<div class = "timeline-images">
+						<div class = "image-div" id="image-div">
+							<div class = "TLimageDiv"><img class = "TLimage" id = "TLI1" src="images/timeline/baby.jpeg"></div>
+							<div class = "TLimageDiv"><img class = "TLimage" id = "TLI2" src="images/timeline/edinburgh.jpeg"></div>
+							<div class = "TLimageDiv"><img class = "TLimage" id = "TLI3" src="images/timeline/singapore.jpeg"></div>
+							<div class = "TLimageDiv"><img class = "TLimage" id = "TLI4" src="images/timeline/america.jpeg"></div>
+							<div class = "TLimageDiv"><img class = "TLimage" id = "TLI5" src="images/timeline/fll.jpeg"></div>
+							<div class = "TLimageDiv"><img class = "TLimage" id = "TLI6" src="images/timeline/fll2.jpeg"></div>
+							<div class = "TLimageDiv"><img class = "TLimage" id = "TLI7" src="images/timeline/fuji.jpeg"></div>
+							<div class = "TLimageDiv"><img class = "TLimage" id = "TLI7" src="images/timeline/byu.jpeg"></div>
+							<div class = "TLimageDiv"><img class = "TLimage" id = "TLI7" src="images/timeline/mission.jpeg"></div>
+							<div class = "TLimageDiv"><img class = "TLimage" id = "TLI7" src="images/timeline/return.jpg"></div>
+							<div class = "TLimageDiv"><img class = "TLimage" id = "TLI7" src="images/timeline/present.jpg"></div>
+						</div>
+					</div>
+					<div class = "timeline-text" id="timelineTextDiv">
+						<p  id="timelineText"></p>
+					</div>
+					<div class = "timeline" style = "transform: rotate(2deg)">
+						<div class = "timeline" id="timeline">
+							<div class = "beginning">THE BEGINNING <p>(dun dun dun...)</p></div>
+							<div class = "ruler"></div>
+							<p class = "event"> I was born! Say hello to baby Rasa!</p>
+							<div class = "TL-pointer"></div>
+							<p class = "date">1999</p>
+							<p class = "event"> Moved to Edinburgh</p>
+							<div class = "TL-pointer"></div>
+							<p class = "date">2001</p>
+							<p class = "event"> Moved to Singapore</p>
+							<div class = "TL-pointer"></div>
+							<p class = "date">2004</p>
+							<p class = "event"> Moved to The United States</p>
+							<div class = "TL-pointer"></div>
+							<p class = "date">2011</p>
+							<p class = "event"> Placed in my ever first robotics competition</p>
+							<div class = "TL-pointer"></div>
+							<p class = "date">2012</p>
+							<p class = "event"> won first place in state robotics competition</p>
+							<div class = "TL-pointer"></div>
+							<p class = "date">2013</p>
+							<p class = "event"> moved back to Japan when I was 14</p>
+							<div class = "TL-pointer"></div>
+							<p class = "date">2014</p>
+							<p class = "event"> Started university at Brigham Young University.</p>
+							<div class = "TL-pointer"></div>
+							<p class = "date">2016</p>
+							<p class = "event"> did a two year volunteer service</p>
+							<div class = "TL-pointer"></div>
+							<p class = "date">2018</p>
+							<p class = "event"> Returned to BYU</p>
+							<div class = "TL-pointer"></div>
+							<p class = "date">2020</p>
+							<div class = "present">THE PRESENT</div>
+						</div>
+					</div>
+					<canvas id = "globe"></canvas>
+					<div id="next-button" onclick="skipTL('interests')">
+						<div id="next-button-hover">skip to</div>
+						what's the next part?
+					</div>
+
+				</div>
+
+				<div class = "pages" id="timeline-moblie-page">
+					<h2 class = "titles" id="timeline-moblie-title">Timeline</h2>
+					<div class = "timeline-moblie-p">
+						<div>Unfortunately, my timeline doesn't work on moblie devices 😔
+							<p>I recommend checking it out on a desktop computer for maximum swag</p>
+						</div>
+					</div>
+				</div>
+
+				<div class = "pages" id="interests-page">
+					<h2 class = "titles" id="interests-title">Interests</h2>
+
+						<div class = "interests-p">
+							<div>I love programming, designing, and good ol' <div id= "negative"> negative space</div></div> 
+							<br>
+							<p>I have been coding for almost 8 years now</p>
+							click <a href="/projects.html" class="linker">here</a> to see my web projects!
+							<br>
+							<br>
+							<p>There are a lot of things I love doing outside of programing too!</p>
+
+						</div>
+				</div>
+				<div class = "pages" id="music-page">
+					<h2 class = "titles" id="music-title">Music</h2>
+					<div class = "music-p">	I also LOVE producing music.
+						<br>I play the piano, guitar, and the drums. And I've been making music for more than 7 years now!
+						<br> My producer name is <a href="https://soundcloud.com/officialrai" class="linker">rai.</a>
+						<br> Check out my <a href="/music.html" class="linker">beats</a>!
+					</div>
+				</div>
+				<div class = "pages" id="art-page">
+					<h2 class = "titles" id="art-title">Art</h2>
+					<div class = "art-p">	I make art sometimes too. Mostly just doodles.
+						<br> Check out the gallery <a href="art.html" class="linker">here</a>!
+					</div>
+				</div>
+				<div class = "pages" id="other-page">
+					<h2 class = "titles" id="other-title">Other</h2>
+					<div class = "other-p">	Other things I'm interested in are freestyle soccer, skateboarding, and cooking!
+					</div>
+				</div>
+
+
+				<div class = "pages" id="end-page">
+					<h2 class = "titles" id="end-title">That's It!</h2>
+					<div class = "end-p">I hope you know a little <span id="more-link">more</span> <span id="more">maybe too much</span> about me now!</div>
+					<div class = "stalk-p">If that wasn't enough, you can stalk me:</div>
+					<div class = "socials">
+						<a href="https://www.behance.net/rasaichimori" target="_blank"><div><img class = "socials-img" src="socials-icon/behance.png"></div></a>
+						<a href="https://dribbble.com/ichimori" target="_blank"><div><img class = "socials-img" src="socials-icon/dribble.png"></div></a>
+						<a href="https://www.facebook.com/spongebob" target="_blank"><div><img class = "socials-img" src="socials-icon/facebook.png"></div></a>
+						<a href="https://www.instagram.com/this.is.rai/" target="_blank"><div><img class = "socials-img" src="socials-icon/instagram.png"></div></a>
+						<a href="https://www.linkedin.com/in/rasa-ichimori-0b3b3523a/" target="_blank"><div><img class = "socials-img" src="socials-icon/linkedin.png"></div></a>
+						<a href="/index.html" target="_blank"><div><img class = "socials-img" src="socials-icon/twitter.png"></div></a>
+						<a href="https://www.youtube.com/c/raitunes" target="_blank"><div><img class = "socials-img" src="socials-icon/youtube.png"></div></a>
+					</div>
+
+					<a id="back-button" href="/index.html" class="linker">back to home</a>
+				</div>
+
+
+			</div>
+			<footer class="site-footer">
+						<li>&copy;2022<a href="/index.html" class="linker"> rasaichimori</a>
+						</li><!-- .footer-copyright -->
+			</footer><!-- #site-footer -->
+<!--			<script defer src="koi.js"></script>-->
+<!--			<script defer src="aboutme.js"></script>-->
+		</main>
+  </body>
+<!--	<script defer src="menu.js"></script>-->
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    <title>rasa ichimori</title>
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="styles.css" id="main-style">
+    <link rel="stylesheet" href="home.css">
+    <meta name="description" content="↑ click it! ↑ Wait... I have my own website?? Yo, that's so cool! 😎 (swag)" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+		<script defer src="node_modules/swup/dist/swup.min.js"></script> 
+		<script defer src="node_modules/@swup/head-plugin/dist/SwupHeadPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/preload-plugin/dist/SwupPreloadPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/progress-plugin/dist/SwupProgressPlugin.min.js"></script>
+		<script defer src="node_modules/@swup/debug-plugin/dist/SwupDebugPlugin.min.js"></script>
+		<script defer src="setup.js"></script> 
+  </head>
+<!--
+
+𓆟
+𓆟
+𓆟
+𓆟
+𝚠𝚎𝚕𝚌𝚘𝚖𝚎 𝚝𝚘 my page ☂
+𓆟
+𓆟
+𓆟
+𓆟
+
+
+
+
+
+-->
+  <body>
+		<div class = "loader" id="loader">
+			<div class ="loader-circle" id="loader-circle"></div>
+			<img src="loader.gif">
+			<p>loading...</p>
+		</div>
+		<nav>
+			<div class = "menu" id="menu">
+				<div class = "menuDiv" id="menuDiv">
+					<a href="/index.html"><li>home</li></a>
+					<a href="/aboutme.html"><li>about me</li></a>
+					<a href="/portfolio.html"><li>portfolio</li></a>
+					<a href="/contact.html"><li>contact</li></a>
+				</div>
+			</div>
+		</nav>
+		<main id="swup" class="transition-circle">
+			<div class = "pageLength" id="pageLength"></div>
+			<div class = "pageContent" id="pageContent">
+			<div class = "p5canvas" id= "p5canvas"></div>
+				
+				<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob4">
+					<path fill="#c4bc84" d="M31.9,-60.9C38.5,-51.4,39,-37.1,42.2,-26.2C45.3,-15.3,51,-7.6,54.4,2C57.9,11.6,59.1,23.2,53.3,29.5C47.5,35.8,34.7,36.9,24.6,45.1C14.6,53.4,7.3,68.8,-1.8,72C-10.9,75.1,-21.8,65.9,-30.8,57C-39.8,48.1,-46.8,39.6,-51.4,30.2C-56,20.7,-58.1,10.4,-61.3,-1.9C-64.5,-14.1,-68.9,-28.2,-63.8,-36.7C-58.7,-45.2,-44.1,-48.1,-31.9,-54.4C-19.7,-60.6,-9.8,-70.2,1.4,-72.6C12.6,-75,25.3,-70.3,31.9,-60.9Z" transform="translate(100 100)" />
+				</svg>
+				<div id = "block"></div>
+				<div class = "koi" id= "koi"></div>
+				<div class = "blobs" id="blobs">
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob1" class = "blob">
+						<path fill="#93ae88" d="M25,-49.6C32.7,-38.8,39.7,-32.8,48.1,-25.4C56.5,-17.9,66.4,-9,71.9,3.1C77.3,15.3,78.3,30.5,72.6,42.7C66.9,54.8,54.5,63.9,41.3,69.2C28.1,74.6,14,76.2,-0.8,77.6C-15.6,79,-31.3,80.1,-45.6,75.4C-59.9,70.7,-73,60.2,-80,46.7C-87.1,33.1,-88.1,16.6,-87.2,0.5C-86.3,-15.5,-83.4,-31,-75.4,-42.9C-67.5,-54.9,-54.4,-63.3,-41,-70.9C-27.6,-78.5,-13.8,-85.3,-2.6,-80.8C8.6,-76.3,17.2,-60.5,25,-49.6Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob2" class = "blob">
+						<path fill="#776F5F" d="M34.2,-61.4C45.4,-52.7,56.4,-45.8,57.8,-35.9C59.2,-26,51.1,-13,52,0.6C53,14.1,63.1,28.2,63.9,42C64.7,55.8,56.3,69.3,44.1,73.5C31.9,77.7,15.9,72.5,2.8,67.7C-10.4,62.9,-20.8,58.5,-28.4,51.7C-36,44.8,-40.7,35.5,-44.3,26.5C-47.9,17.5,-50.3,8.7,-51.9,-0.9C-53.4,-10.5,-54.1,-21.1,-48.8,-27.1C-43.4,-33.1,-32.1,-34.6,-23,-44.5C-13.9,-54.5,-7,-72.8,2.3,-76.7C11.5,-80.6,22.9,-70.1,34.2,-61.4Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob3" class = "blob">
+						<path fill="#c07561" d="M33.6,-56.5C47.3,-50.2,64.8,-48.9,71.8,-40.3C78.8,-31.7,75.3,-15.8,68.5,-3.9C61.8,8.1,51.9,16.1,46,26.7C40.1,37.2,38.3,50.2,31.3,55.2C24.3,60.2,12.2,57.1,-1.9,60.4C-15.9,63.6,-31.9,73.2,-44.1,71.3C-56.3,69.3,-64.9,55.8,-71.2,42C-77.6,28.2,-81.9,14.1,-77.8,2.4C-73.7,-9.4,-61.3,-18.8,-51.7,-27C-42.1,-35.2,-35.3,-42.3,-27.1,-51.7C-19,-61.2,-9.5,-73.2,0.2,-73.6C9.9,-73.9,19.9,-62.8,33.6,-56.5Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob5" class = "blob">
+						<path fill="#c2c2c2" d="M26.6,-28.2C37.7,-22.5,52.1,-17.1,57,-7.3C62,2.4,57.5,16.5,48.4,23.7C39.2,30.9,25.3,31.1,12.2,37.8C-1,44.5,-13.3,57.6,-23.8,57.3C-34.2,57,-42.7,43.3,-53.1,28.9C-63.4,14.6,-75.6,-0.5,-73.5,-13.1C-71.5,-25.7,-55.1,-36,-40.5,-41C-25.8,-46.1,-12.9,-46,-2.6,-42.9C7.8,-39.9,15.6,-33.9,26.6,-28.2Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob6" class = "blob">
+						<path fill="#e7dcd4" d="M27.3,-52.7C36.8,-41.9,46.8,-37.3,52.8,-29.6C58.7,-21.9,60.6,-10.9,58.5,-1.2C56.4,8.5,50.3,17,43.3,23C36.3,28.9,28.5,32.3,21.1,39C13.7,45.8,6.9,55.8,-1.6,58.6C-10.1,61.4,-20.2,57,-29.9,51.6C-39.6,46.2,-48.8,39.9,-57.4,31.1C-65.9,22.3,-73.7,11.2,-76.2,-1.4C-78.6,-14,-75.6,-28,-68.8,-39.7C-61.9,-51.4,-51.2,-60.8,-39.1,-70.1C-27,-79.4,-13.5,-88.5,-2.3,-84.6C8.9,-80.6,17.9,-63.5,27.3,-52.7Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob7" class = "blob">
+						<path fill="#f5b697" d="M24.6,-35.9C36.5,-35.8,54,-38.5,65,-33C76.1,-27.5,80.8,-13.7,76.8,-2.3C72.7,9.1,60,18.2,51.3,27.8C42.6,37.5,38,47.7,30.2,52.8C22.3,57.9,11.1,57.8,0.8,56.4C-9.5,55,-19,52.2,-26.4,46.8C-33.8,41.5,-39.1,33.5,-47.6,25.3C-56.1,17.1,-67.9,8.5,-71.3,-1.9C-74.7,-12.4,-69.6,-24.8,-63.6,-37.4C-57.5,-49.9,-50.5,-62.6,-39.7,-63.3C-29,-64,-14.5,-52.8,-4.1,-45.8C6.4,-38.7,12.7,-35.9,24.6,-35.9Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob8" class = "blob">
+						<path fill="#ecdfce" d="M34.9,-57.7C43.1,-55.8,45.9,-42,52.2,-30.4C58.6,-18.7,68.5,-9.4,71.5,1.7C74.5,12.9,70.7,25.7,62.2,33.8C53.8,41.8,40.9,45.1,29.7,54.4C18.6,63.6,9.3,78.9,-2.7,83.6C-14.7,88.3,-29.5,82.4,-42.4,74.2C-55.4,66,-66.6,55.5,-74.8,42.7C-83.1,30,-88.3,15,-87.1,0.7C-86,-13.7,-78.5,-27.3,-67.5,-35.2C-56.5,-43.1,-41.9,-45.3,-30.1,-45C-18.3,-44.7,-9.1,-42,2.1,-45.7C13.4,-49.4,26.8,-59.6,34.9,-57.7Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob9" class = "blob">
+						<path fill="#f1e7cc" d="M37.6,-63.2C49.4,-58.2,60.2,-49.6,61.9,-38.5C63.5,-27.3,56,-13.7,53.9,-1.2C51.8,11.3,55.2,22.5,53.7,33.9C52.2,45.3,45.8,56.9,36.1,60.6C26.3,64.2,13.2,60.1,3.1,54.7C-7,49.3,-13.9,42.8,-23.5,39C-33.1,35.2,-45.4,34.2,-58.5,28.2C-71.6,22.2,-85.6,11.1,-81.9,2.1C-78.3,-6.9,-57,-13.7,-45.7,-22.9C-34.4,-32.1,-33.1,-43.6,-27.1,-52C-21.2,-60.4,-10.6,-65.7,1.1,-67.7C12.9,-69.7,25.7,-68.3,37.6,-63.2Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob10" class = "blob">
+						<path fill="#bab78d" d="M49.4,-61.2C56.3,-53.1,48.8,-30.2,45.7,-13.1C42.6,3.9,44,15.1,42.7,31.4C41.3,47.7,37.1,69.2,25,77.4C12.9,85.6,-7.3,80.4,-26,72.9C-44.7,65.4,-61.9,55.6,-70.3,40.8C-78.6,25.9,-78,6.1,-69.8,-7.5C-61.7,-21,-45.8,-28.4,-32.9,-35.4C-20,-42.4,-10,-49.1,5.6,-55.8C21.3,-62.5,42.5,-69.2,49.4,-61.2Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob11" class = "blob">
+						<path fill="#96A28D" d="M47.6,-53.2C63.3,-43.6,78.5,-30.1,81.9,-14C85.2,2,76.6,20.6,66,37.4C55.5,54.2,43.1,69.2,29.5,68.7C16,68.2,1.4,52.2,-12.2,43.1C-25.7,33.9,-38.3,31.6,-49.8,23.2C-61.3,14.7,-71.7,0.1,-73.4,-16.9C-75.1,-33.9,-68.1,-53.3,-54.4,-63.2C-40.7,-73.1,-20.4,-73.5,-2.2,-70.9C16,-68.3,32,-62.7,47.6,-53.2Z" transform="translate(100 100)" />
+					</svg>
+					<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id = "blob12" class = "blob">
+						<path fill="#9fa195" d="M52.2,-57.8C67.4,-49.4,79.4,-32.8,77.5,-17.5C75.6,-2.2,59.9,11.6,48.6,25.1C37.3,38.6,30.5,51.7,18,61.5C5.5,71.2,-12.6,77.7,-24,71.2C-35.4,64.7,-40.1,45.3,-42.2,30C-44.3,14.7,-43.8,3.5,-46.7,-13.1C-49.6,-29.8,-55.9,-51.9,-48.7,-61.7C-41.4,-71.4,-20.7,-68.7,-1.1,-67.4C18.5,-66.1,37,-66.1,52.2,-57.8Z" transform="translate(100 100)" />
+					</svg>
+				</div>
+
+				<div class = "pages"  id= "home-page">
+					<div class = "title">
+								<h1>RASA ICHIMORI</h1>
+					</div>
+					<div class = "main-menu">
+						<li><a href="/portfolio.html">Portfolio</a></li>
+						<li><a href="/aboutme.html">About Me</a></li>
+						<li><a href="/contact.html">Contact</a></li>
+					</div>
+					<div class = "scrollanimation" onclick="window.scrollTo(0,window.innerHeight*2)">
+						<div class = "mouse">
+							<div class = "scrollwheel">
+							</div>
+						</div>
+						scroll
+					</div>
+				</div>
+
+				<div class = "pages" id="welcome-page">
+					<h2 class = "titles" id="welcome-title">Welcome to my page!</h2>
+
+					<div class = "welcome-p">
+						<div>Want see my web projects and how I made them?<br>
+							Looking for my skillset?<br>
+							Are you part of a super cool company?<br><br>
+							click<a href = "/portfolio.html" id="skip">here</a><span id = "speechBubble">←	my portfolio page!</span> </div>
+
+							<br>
+							<br>
+							<br>
+							<br>
+						<p style="opacity: 0.5">or you can keep scrolling...</p>
+					</div>
+				</div>		
+
+				<div class = "pages" id="boat-page">
+					<img id = "boat" src="images/boat.png">
+					<p class= "fishlove">looks like one of them likes you 😃</p>
+				</div>
+
+				<div class = "pages" id="aboutme-page">
+					<h2 class = "titles" id="aboutme-title">About me</h2>
+
+					<div class = "aboutme-p">
+						<p>Do you want to know more about me as a person?<br>
+							How kind! I made <a href = "/aboutme.html" class="linker"> this page</a> just for you ☺<br>
+							<br><br></p>
+							<br>
+							<br>
+							<br>
+							<br>
+						<p style="opacity: 0.5">keep scrolling for my contact info...</p>
+					</div>
+				</div>	
+
+				<div class = "pages" id="instructions-page">
+					<div class = "instructions-p">
+						<p>psst... by the way, if you hold down your mouse button, the dandelion seeds come rushing back!
+
+					</div>
+				</div>		
+
+				<div class = "pages" id="contact-page">
+					<div id="contact-title" class = "titles"><a href="/contact.html"><h2>Contact Me</h2></a>
+						<div id="contact-bg"></div>
+					</div>
+					<div class = "contact-p">
+						<p>Want to work together? Just want to say Hi?<br>
+							shoot me an email!</p>
+							<br>
+						<p>rasaichimori@gmail.com<p>
+							<br><br>
+							<br>
+							<br>
+							<br>
+							<br>
+						<p id= "end" style="opacity: 0.5">That's it! End of the line!</p>
+					</div>
+				</div>	
+
+
+			</div>
+			<footer class="site-footer">
+						<li>&copy;2022<a href="/index.html" class="linker"> rasaichimori</a>
+						</li><!-- .footer-copyright -->
+			</footer><!-- #site-footer -->
+		</main>
+  </body>
+</html>

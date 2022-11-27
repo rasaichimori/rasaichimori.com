@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    <title>gallery</title>
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="art.css">
+    <meta name="description" content="all my art in one place" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+	</head>
+    
+  <body>
+			<div class = "pageContent" id="pageContent">
+			<div class = "p5canvas" id= "p5canvas"></div>
+
+				<div class = "pages" id="art-page">
+					<h2 class = "titles" id="art-title">GALLERY</h2>
+					<div class = "main-menu" id="main-menu">
+						<div class = "main-menuDiv" id="main-menuDiv">
+							<a href="/index.html"><li>home</li><span></span></a>
+							<a href="/aboutme.html"><li>about me</li></a>
+							<a href="/portfolio.html"><li>portfolio</li></a>
+							<a href="/contact.html"><li>contact</li></a>
+						</div>
+					</div>
+					<div class = "gallery">
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/an%20artist.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/companion.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/beast%202.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/mask.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/a%20flower%20boy.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/spring.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/prayer.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/beast%201.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/stare.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/conceal.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/notice.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/social.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/pool.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/memory-dark.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/abuse.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/shadow%20girl.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/dome.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/stain.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/waiting.png"></div></div>
+						<div class = "gallery-item"><div class = "gallery-img" onclick="openLB(this)"><img src ="images/gallery/covert.png"></div></div>
+					</div>
+					
+					<div class = "socials">
+						<a href="https://www.behance.net/rasaichimori" target="_blank"><div><img class = "socials-img" src="socials-icon/behance.png"></div></a>
+						<a href="https://dribbble.com/ichimori" target="_blank"><div><img class = "socials-img" src="socials-icon/dribble.png"></div></a>
+						<a href="https://www.instagram.com/this.is.rai/" target="_blank"><div><img class = "socials-img" src="socials-icon/instagram.png"></div></a>
+						<a href="https://www.linkedin.com/in/rasa-ichimori-0b3b3523a/" target="_blank"><div><img class = "socials-img" src="socials-icon/linkedin.png"></div></a>
+						<a href="https://www.youtube.com/c/raitunes" target="_blank"><div><img class = "socials-img" src="socials-icon/youtube.png"></div></a>
+					</div>
+				</div>	
+			</div>
+			<div class = "lightbox" id= "lightbox">
+				<div class = "lightbox-bg" id = "lightbox-bg" onclick="closeLB()"></div>
+			</div>
+			<footer class="site-footer">
+						<li>&copy;2022<a href="/index.html" class="linker"> rasaichimori</a>
+						</li><!-- .footer-copyright -->
+			</footer><!-- #site-footer -->
+<!--			<script src="menu.js"></script>-->
+		<script>
+			var imgList = document.querySelectorAll('.gallery-item');
+			imgList.forEach(item=>{
+				var img = item.childNodes[0];
+				var fullPath = img.childNodes[0].src;
+				var filename = fullPath.replace(/^.*[\\\/]/, '').replace(/.png/g, '').replace(/%20/g, " ");
+				console.log(filename);
+				
+				var newLabel = document.createElement("p");
+				var node = document.createTextNode(filename);
+				newLabel.appendChild(node);
+				item.appendChild(newLabel);
+	//			img.style.width = "300px";
+				img.style.height = Math.random()*200+300+"px";
+				
+			});
+			var lightbox = document.getElementById('lightbox');
+			
+			var imgLB = document.createElement('img');
+			lightbox.appendChild(imgLB);
+			
+			function openLB(element){
+				var imgsrc = element.childNodes[0].src;
+				lightbox.style.opacity = '1';
+				lightbox.style.pointerEvents = 'auto';
+				imgLB.style.pointerEvents = 'auto';
+				imgLB.src = imgsrc;
+			}
+			function closeLB(){
+				lightbox.style.opacity = '0';
+				lightbox.style.pointerEvents = 'none';
+				imgLB.style.pointerEvents = 'none';
+			}
+		</script>
+  </body>
+</html>
