@@ -6,7 +6,7 @@ const swup = new Swup({
 		//						new SwupHeadPlugin(), 
 		new SwupPreloadPlugin(),
 		//						new SwupProgressPlugin(),
-		new SwupDebugPlugin()
+		// new SwupDebugPlugin()
 	]
 });
 var transitionIsFinished = false;
