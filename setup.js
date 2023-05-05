@@ -1,5 +1,6 @@
 //swup stuff
 const swup = new Swup({
+	debugMode: true,
 	plugins: [
 		//		new SwupHeadPlugin({persistTags: (tag) => tag.id == "main-style"}), 
 		//						new SwupHeadPlugin(), 
