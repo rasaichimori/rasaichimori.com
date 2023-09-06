@@ -691,11 +691,11 @@ function removeAll() {
 
 document.getElementById("controls-sw").addEventListener("change", (e) => {
 	if (e.currentTarget.checked) {
-		document.getElementById("slider-cont").style.transform = "translateX(400px)";
-		document.getElementById("controls-cont").style.transform = "translateX(-400px)";
-	}
-	else {
 		document.getElementById("slider-cont").style.transform = "translate(0,0)";
 		document.getElementById("controls-cont").style.transform = "translate(0,0)";
+	}
+	else {
+		document.getElementById("slider-cont").style.transform = "translateX(400px)";
+		document.getElementById("controls-cont").style.transform = "translateX(-400px)";
 	}
 });
