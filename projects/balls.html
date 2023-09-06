@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>balls!</title>
+	<link rel="icon" href="images/musicVisualLogo.png">
+	<link rel="stylesheet" href="../styles.css">
+	<link rel="stylesheet" href="ballStyles.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+
+<body style="color: #444">
+	<!--
+      <div class = "loader">
+					<p>loading</p>
+			</div>
+-->
+	<div id="container">
+		<div class="background" id="bg"></div>
+		<p id="header" class="title">ball physics</p>
+		<div class="cont" id="cont">
+			<div class="p5canv" id="p5canv"></div>
+			<div class="bottom-info">
+				<p>fps: <span id="frameRateDisplay"></span></p>
+				<p>ball count: <span id="ballCount"></span></p>
+			</div>
+		</div>
+		<div class="controls-cont" id="controls-cont">
+			<div class="radio-group" id="number-mode">
+				<div class="radio-button">
+					<input type="radio" id="add-mode" name="number-modes" onchange="changeNumberMode('add');" checked />
+					<label for="add-mode">Add</label>
+				</div>
+				<div class="radio-button">
+					<input type="radio" id="remove-mode" name="number-modes" onchange="changeNumberMode('remove');" />
+					<label for="remove-mode">Remove</label>
+				</div>
+			</div>
+			<div>
+				<button id="change-1" onclick="changeNumberOfBalls(1)">1</button>
+				<button id="change-5" onclick="changeNumberOfBalls(5)">5</button>
+				<button id="change-10" onclick="changeNumberOfBalls(10)">10</button>
+				<button id="change-20" onclick="changeNumberOfBalls(20)">20</button>
+				<button id="change-all" onclick="removeAll()">all</button>
+			</div>
+
+			<p>Modes:</p>
+			<div class="radio-group">
+				<div class="radio-button">
+					<input type="radio" id="edit-mode" name="ball-mode" onchange="changeMode('edit');" value="edit"
+						checked />
+					<label for="edit-mode">Edit</label>
+				</div>
+				<div class="radio-button" id="add-ball">
+					<input type="radio" id="add-ball-mode" name="ball-mode" onchange="changeMode('addBall');"
+						value="addBall" />
+					<label for="add-ball-mode">Add Ball</label>
+				</div>
+				<div class="radio-button" id="add-segment">
+					<input type="radio" id="add-segment-mode" name="ball-mode" onchange="changeMode('addSeg');"
+						value="addSegment" />
+					<label for="add-segment-mode">Add Segment</label>
+				</div>
+				<div class="radio-button" id="remove-objects">
+					<input type="radio" id="remove-objects-mode" name="ball-mode" onchange="changeMode('remove');"
+						value="removeObject" />
+					<label for="remove-objects-mode">Remove Object</label>
+				</div>
+			</div>
+			<div class="switch-box" id="select-mode-div">
+				<p>Set <span id="select-mode-label"></span> on select</p>
+				<label class="switch">
+					<input type="checkbox" id="select-mode" checked>
+					<span class="sw round"></span>
+				</label>
+			</div>
+
+		</div>
+		<div class="slider-cont" id="slider-cont">
+			<div class="slider-box">
+				<p>gravity:</p>
+				<p id="value0" class="values">0</p>
+				<input class="slider" id="slider0" type="range" min="0" max="0.7" value="0.08" step="0.01">
+			</div>
+			<div class="color-cont">
+				<p>ball color:</p>
+				<div class="color-mode">
+					<div class="color" id="color0" onclick="changeColors(this);" style="background-color: #eee"></div>
+					<div class="color" id="color1" onclick="changeColors(this);" style="background-color: #444"></div>
+					<div class="color" id="color2" onclick="changeColors(this);" style="background-color: #d6d2b5">
+					</div>
+					<div class="color" id="color3" onclick="changeColors(this);" style="background-color: #93ae88">
+					</div>
+					<div class="color" id="color4" onclick="changeColors(this);" style="background-color: #d48c8c">
+					</div>
+					<div class="color" id="color5" onclick="changeColors(this);" style="background-color: #a2b9c5">
+					</div>
+					<div class="color" id="color6" onclick="changeColors(this);" style="background-color: #ff0000">
+					</div>
+				</div>
+			</div>
+			<div class="color-cont" id="connectionColor">
+				<p>bar color:</p>
+				<div class="color-mode">
+					<div class="color" id="color0" onclick="changeConColors(this);"
+						style="background-color: rgb(255, 255, 255)"></div>
+					<div class="color" id="color1" onclick="changeConColors(this);"
+						style="background-color: rgb(20, 20, 20)"></div>
+					<div class="color" id="color2" onclick="changeConColors(this);"
+						style="background-color: rgb(255, 0, 255)"></div>
+					<div class="color" id="color3" onclick="changeConColors(this);"
+						style="background-color: rgb(147, 255, 136)"></div>
+					<div class="color" id="color4" onclick="changeConColors(this);"
+						style="background-color: rgb(255, 255, 207)"></div>
+					<div class="color" id="color5" onclick="changeConColors(this);"
+						style="background-color: rgb(0, 100, 255)"></div>
+					<div class="color" id="color6" onclick="changeConColors(this);"
+						style="background-color: rgb(255, 150, 0)"></div>
+				</div>
+			</div>
+			<div class="switch-box">
+				<p>bounce off edges: </p>
+				<label class="switch">
+					<input type="checkbox" id="bounceEdge">
+					<span class="sw round"></span>
+				</label>
+			</div>
+			<div class="slider-box">
+				<p>bar thickness:</p>
+				<p id="value1" class="values">0</p>
+				<input class="slider" id="slider1" type="range" min="0" max="30" value="5" step="1">
+			</div>
+			<div class="slider-box">
+				<p>bounciness:</p>
+				<p id="value2" class="values">0</p>
+				<input class="slider" id="slider2" type="range" min="0" max="2" value="1" step="0.01">
+			</div>
+			<div class="bg-cont">
+				<p>background:</p>
+				<div class="bg-mode">
+					<div class="bg-thumb" id="bg-white" onclick="changeBg(this)" style="background-color: #fff"></div>
+					<div class="bg-thumb" id="bg-black" onclick="changeBg(this)" style="background-color: #ddddd9">
+					</div>
+					<div class="bg-thumb" id="bg-sky" onclick="changeBg(this)" style="background-color: #000"></div>
+					<div class="bg-thumb" id="bg-gif" onclick="changeBg(this)" style="background-color: #eeede9"></div>
+				</div>
+			</div>
+			<div class="switch-box" id="fullScreen-box">
+				<p>full screen: </p>
+				<label class="switch">
+					<input type="checkbox" id="fullScreen">
+					<span class="sw round"></span>
+				</label>
+			</div>
+		</div>
+		<div class="switch-box" id="show-controls">
+			<p id="controls-label">Show Controls</p>
+			<label class="switch">
+				<input type="checkbox" id="controls-sw">
+				<span class="sw round"></span>
+			</label>
+		</div>
+		<footer class="site-footer">
+			<li>&copy;2022<a href="https://rasaichimori.com"> rasaichimori</a>
+			</li><!-- .footer-copyright -->
+		</footer><!-- #site-footer -->
+	</div>
+	<script src="balls.js"></script>
+</body>
+
+</html>
