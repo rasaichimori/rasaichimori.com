@@ -614,26 +614,26 @@ document.getElementById('remove-objects-mode-text').style.display = 'none';
 function changeMode(mode) {
 	if (mode == 'edit') {
 		selectModeDiv.style.display = 'flex';
-		document.getElementById('edit-mode-text').style.display = 'block';
+		document.getElementById('edit-mode-text').style.display = 'flex';
 	}
 	else {
 		selectModeDiv.style.display = 'none';
 		document.getElementById('edit-mode-text').style.display = 'none';
 	}
 	if (mode == 'addBall') {
-		document.getElementById('add-ball-mode-text').style.display = 'block';
+		document.getElementById('add-ball-mode-text').style.display = 'flex';
 	}
 	else {
 		document.getElementById('add-ball-mode-text').style.display = 'none';
 	}
 	if (mode == 'addSeg') {
-		document.getElementById('add-segment-mode-text').style.display = 'block';
+		document.getElementById('add-segment-mode-text').style.display = 'flex';
 	}
 	else {
 		document.getElementById('add-segment-mode-text').style.display = 'none';
 	}
 	if (mode == 'remove') {
-		document.getElementById('remove-objects-mode-text').style.display = 'block';
+		document.getElementById('remove-objects-mode-text').style.display = 'flex';
 	}
 	else {
 		document.getElementById('remove-objects-mode-text').style.display = 'none';
