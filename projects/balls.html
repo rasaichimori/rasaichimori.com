@@ -76,6 +76,46 @@
 					<span class="sw round"></span>
 				</label>
 			</div>
+			<div id="modes-explained">
+				<div id="edit-mode-text">
+					<p>
+						This mode allows you to edit segments and balls at the same time. To edit the segment, click the
+						edge of the segment and drag to move that point of the segment.
+					</p>
+					<p>
+						For the balls, there are two ways to edit them. Within edit mode, you can chose to change the
+						ball’s
+						position when one is click and dragged. To do this, the bottom toggle button should say “set
+						position on select”
+					</p>
+					<p>
+
+						You can give any ball a certain velocity with a click and drag as well.
+					</p>
+					<img class="mode-gif" src="./images/setvel.gif">
+				</div>
+				<div id="add-ball-mode-text">
+					<p>
+						This mode allows you to create a ball on click. The ball will be created where your mouse is. If
+						you click and drag, you’ll be able to set the size of the ball as well.
+					</p>
+					<img class="mode-gif" src="./images/addball.gif">
+				</div>
+				<div id="add-segment-mode-text">
+					<p>
+						This mode allows you to create a segment on click. Click and drag anywhere on the simulation
+						screen to create the segment.
+					</p>
+					<img class="mode-gif" src="./images/addseg.gif">
+				</div>
+				<div id="remove-objects-mode-text">
+					<p>
+						To remove any item on the simulation screen, just click on it. You can also hold down the mouse
+						button and move it around to remove all the objects the mouse comes in contact with.
+					</p>
+					<img class="mode-gif" src="./images/remove.gif">
+				</div>
+			</div>
 
 		</div>
 		<div class="slider-cont" id="slider-cont">
@@ -162,12 +202,50 @@
 				<span class="sw round"></span>
 			</label>
 		</div>
+		<div id="info">
+			<div id="question-image" onclick="openInfoModal()">
+				<img src="./images/question.png">
+			</div>
+			<div id="info-modal">
+				<button id="close-button" onclick="closeInfoModal()">x</button>
+				<p>
+					This is a simulation that shows uses a 2D ball physics engine that I created from scratch without
+					any physics libraries! Just pure JavaScript. I am also using p5 to display the circles on the
+					canvas.
+				</p>
+				<p>
+					To modify the parameters, click the show setting toggle at the bottom right. This you allow you to
+					change how the simulation looks, as well as parameters such as gravity, the number of balls, and how
+					they interact.
+				</p>
+				<p>
+					I followed an incredibly helpful youtube tutorial series by <a
+						href="https://www.youtube.com/@javidx9" target="_blank">javidx9</a> which explained the main
+					concepts in detail
+					and demonstrated them in c++. At the moment, there are no other rigid bodies at play because circles
+					are the easiest to calculate without angular velocities. Of course, there are plenty of amazing
+					libraries like matter.js that wouldn’t require you to create a physics library from scratch, but you
+					this was just a project to test myself with.
+				</p>
+				<p>
+					Enjoy!
+				</p>
+			</div>
+		</div>
 		<footer class="site-footer">
 			<li>&copy;2022<a href="https://rasaichimori.com"> rasaichimori</a>
 			</li><!-- .footer-copyright -->
 		</footer><!-- #site-footer -->
 	</div>
 	<script src="balls.js"></script>
+	<script>
+		function closeInfoModal() {
+			document.getElementById("info-modal").style.display = "none";
+		}
+		function openInfoModal() {
+			document.getElementById("info-modal").style.display = "block";
+		}
+	</script>
 </body>
 
 </html>

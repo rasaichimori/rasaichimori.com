@@ -608,13 +608,37 @@ function updateBallCount() {
 
 let editMode = 'edit'
 const selectModeDiv = document.getElementById('select-mode-div');
+document.getElementById('add-ball-mode-text').style.display = 'none';
+document.getElementById('add-segment-mode-text').style.display = 'none';
+document.getElementById('remove-objects-mode-text').style.display = 'none';
 function changeMode(mode) {
 	if (mode == 'edit') {
 		selectModeDiv.style.display = 'flex';
+		document.getElementById('edit-mode-text').style.display = 'block';
 	}
 	else {
 		selectModeDiv.style.display = 'none';
+		document.getElementById('edit-mode-text').style.display = 'none';
 	}
+	if (mode == 'addBall') {
+		document.getElementById('add-ball-mode-text').style.display = 'block';
+	}
+	else {
+		document.getElementById('add-ball-mode-text').style.display = 'none';
+	}
+	if (mode == 'addSeg') {
+		document.getElementById('add-segment-mode-text').style.display = 'block';
+	}
+	else {
+		document.getElementById('add-segment-mode-text').style.display = 'none';
+	}
+	if (mode == 'remove') {
+		document.getElementById('remove-objects-mode-text').style.display = 'block';
+	}
+	else {
+		document.getElementById('remove-objects-mode-text').style.display = 'none';
+	}
+
 	editMode = mode;
 }
 

@@ -18,11 +18,6 @@ body::-webkit-scrollbar {
 	height: 0;
 }
 
-body::-webkit-scrollbar-thumb {
-	background: #FF0000;
-}
-
-
 .loader {
 	position: fixed;
 	margin: 0;
@@ -56,16 +51,21 @@ body::-webkit-scrollbar-thumb {
 	z-index: -1;
 }
 
-.p5canv {
-	/*	position: relative;*/
-	/*	top: 50%;*/
-	/*	transform: translate(-50%,-50%);*/
-}
-
 #frameRateDisplay {
 	margin: 0;
 	/*	transform: translate(-50%,0);*/
 	position: relative;
+}
+
+#modes-explained {
+	height: 300px;
+	overflow-y: scroll;
+}
+
+#modes-explained::-webkit-scrollbar {
+	/* WebKit */
+	width: 0;
+	height: 0;
 }
 
 .bottom-info {
@@ -118,7 +118,8 @@ button:active {
 
 .radio-button {
 	border: #666 solid 1px;
-	padding: 4px 8px;
+	display: flex;
+	justify-content: center;
 	cursor: pointer;
 	transition: all 0.2s;
 	white-space: nowrap;
@@ -133,6 +134,7 @@ button:active {
 	display: flex;
 	justify-content: center;
 	width: 100%;
+	padding: 4px 8px 4px 8px;
 }
 
 .radio-button:hover {
@@ -146,6 +148,11 @@ button:active {
 
 .radio-button:has(input:checked) {
 	background: #989;
+}
+
+.mode-gif {
+	position: relative;
+	width: 100%
 }
 
 #number-mode {
@@ -379,6 +386,43 @@ canvas {
 	height: 100%;
 }
 
+
+#question-image {
+	position: fixed;
+	bottom: 30px;
+	left: 20px;
+	width: 25px;
+	z-index: 10;
+}
+
+
+#question-image:hover {
+	cursor: pointer;
+}
+
+#question-image img {
+	width: 25px;
+}
+
+#info-modal {
+	display: none;
+	position: absolute;
+	border-radius: 10px;
+	width: 400px;
+	left: 50px;
+	bottom: 30px;
+	background-color: #eee;
+	padding: 20px;
+}
+
+#info-modal #close-button {
+	position: relative;
+	border-radius: 50%;
+	left: 100%;
+	border: solid;
+	background-color: #333;
+	transform: translate(-50%, -50%);
+}
 
 @media screen and (max-width : 800px) {
 	.title {
