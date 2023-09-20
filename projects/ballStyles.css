@@ -155,6 +155,11 @@ button:active {
 	width: 100%
 }
 
+.mode-text {
+	display: flex;
+	flex-direction: column;
+}
+
 #number-mode {
 	margin-bottom: 20px;
 }
